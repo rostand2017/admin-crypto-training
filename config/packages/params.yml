@@ -1,0 +1,5 @@
+parameters:
+    locale: en
+    images_courses_directory: '%kernel.project_dir%/public/uploads/images'
+    videos_courses_directory: '%kernel.project_dir%/public/uploads/videos'
+    supports_courses_directory: '%kernel.project_dir%/public/uploads/supports'
