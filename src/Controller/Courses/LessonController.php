@@ -6,7 +6,7 @@
  * Time: 10:05
  */
 
-namespace App\Controller\Modules;
+namespace App\Controller\Courses;
 
 
 use App\Entity\Module;
@@ -17,6 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 class LessonController extends AbstractController
 {
@@ -124,7 +125,7 @@ class LessonController extends AbstractController
     /**
      * @Route("modules/{module}/lessons/{lesson}/delete", name="delete_lesson", requirements={"module"="\d+", "lesson"="\d+"})
      */
-    public function deleteModuleAction(Module $module, Lesson $lesson){
+    public function deleteLessonAction(Module $module, Lesson $lesson){
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($lesson);

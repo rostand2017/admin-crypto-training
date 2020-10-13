@@ -24,7 +24,7 @@ class AdminController extends  AbstractController
     public function adminAction(){
         $admins = $this->getDoctrine()->getRepository(Admin::class)->findAll();
         return $this->render("home/admin.html.twig", array(
-            "categories" => $admins
+            "admins" => $admins
         ));
     }
 
@@ -40,26 +40,25 @@ class AdminController extends  AbstractController
         $password = $post->get("password");
         $id = $post->get('id');
 
-        if(strlen($password) < 8)
-            return new JsonResponse(['status'=>1, "mes"=>"Le mot de passe doit comporter au moins 8 caractères"]);
-
         $existingEmail = $em->getRepository(Admin::class)->findOneBy(['email'=>$email]);
-        if($existingEmail)
-            return new JsonResponse(['status'=>1, "mes"=>"Cette adresse email existe déjà"]);
-
 
         if($id > 0 ){
             $admin = $em->getRepository(Admin::class)->find($id);
             if( $email != '' && $admin)
             {
+                if($existingEmail && $existingEmail->getEmail() != $admin->getEmail())
+                    return new JsonResponse(['status'=>1, "mes"=>"Cette adresse email existe déjà"]);
+                if($password && strlen($password) < 8)
+                    return new JsonResponse(['status'=>1, "mes"=>"Le mot de passe doit comporter au moins 8 caractères"]);
+                if($password)
+                    $admin->setPassword($encoder->encodePassword($this->getUser(), $password));
+
                 $admin->setEmail($email);
-                $admin->setPassword($encoder->encodePassword($this->getUser(), $password));
-                $admin->setRoles(["ROLE_ADMIN"]);
                 $em->persist($admin);
                 $em->flush();
                 return new JsonResponse(array(
                     "status"=>0,
-                    "mes"=>"Utilisateur ajouté avec succès"
+                    "mes"=>"Utilisateur modifié avec succès"
                 ));
             }else{
                 return new JsonResponse(array(
@@ -69,6 +68,10 @@ class AdminController extends  AbstractController
             }
 
         }else{
+            if($existingEmail)
+                return new JsonResponse(['status'=>1, "mes"=>"Cette adresse email existe déjà"]);
+            if(strlen($password) < 8)
+                return new JsonResponse(['status'=>1, "mes"=>"Le mot de passe doit comporter au moins 8 caractères"]);
             if($email != ''){
                 $admin = new Admin();
                 $admin->setEmail($email);
@@ -78,7 +81,7 @@ class AdminController extends  AbstractController
                 $em->flush();
                 return new JsonResponse(array(
                     "status"=>0,
-                    "mes"=>"Utilisateur modifié avec succès"
+                    "mes"=>"Utilisateur ajouté avec succès"
                 ));
             }else{
                 return new JsonResponse(array(
