@@ -11,12 +11,13 @@ $(document).ready(function() {
             processData: false,
             contentType: false,
             beforeSend: function () {
-                $('#sendBtn').text('Patientez...').prop('disabled',true);
+                $('#sendBtn').prop('disabled',true);
+                $('#textSendBtn').text('Patientez...');
+                $('#loadSendBtn').show();
                 $('#alert').get(0).innerHTML = "";
             },
             success: function (json) {
                 if (json.status === 0){
-                    $('#category').val('');
                     $('#alert').append(
                         "<span class='alert alert-success'>"+ json.mes +"</span>"
                     );
@@ -30,7 +31,9 @@ $(document).ready(function() {
                 }
             },
             complete: function () {
-                $('#sendBtn').text('Enregistrer').prop('disabled',false);
+                $('#sendBtn').prop('disabled',false);
+                $('#loadSendBtn').hide();
+                $('#textSendBtn').text('Enregistrer');
             },
             error: function(jqXHR, textStatus, errorThrown){}
         });
@@ -39,12 +42,14 @@ $(document).ready(function() {
     $('#newModal').on('click', function () {
         $('#form').get(0).reset();
         $('#alert').get(0).innerHTML = "";
-        $('#id').val('');
+        $("#form").attr('action', $(this).data('url'));
+        $('#filesContainer').show();
     });
 
     $('.editModal').on('click', function () {
-        $('#category').val($(this).data('category'));
-        $('#id').val($(this).data('id'));
+        $('#title').val($(this).data('title'));
+        $("#form").attr('action', $(this).data('url'));
+        $('#filesContainer').hide();
     });
 
     $('.deleteElt').on('click', function (e) {
@@ -52,7 +57,7 @@ $(document).ready(function() {
         var url = $(this).data('url');
         swal({
                 title: "Warning",
-                text: "Êtes vous sûr de vouloir supprimer cette catégorie?",
+                text: "Êtes vous sûr de vouloir supprimer cette leçon?",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",

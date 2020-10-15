@@ -12,6 +12,7 @@ $(document).ready(function() {
             contentType: false,
             beforeSend: function () {
                 $('#sendBtn').text('Patientez...').prop('disabled',true);
+                $('#alert').get(0).innerHTML = "";
             },
             success: function (json) {
                 if (json.status === 0){
@@ -37,7 +38,7 @@ $(document).ready(function() {
 
     $('#newModal').on('click', function () {
         $('#form').get(0).reset();
-        $('#alert').append('');
+        $('#alert').get(0).innerHTML = "";
         $('#id').val('');
     });
 

@@ -35,6 +35,11 @@ class Category
      */
     private $createdat;
 
+    public function __construct()
+    {
+        $this->createdat = new \DateTime();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

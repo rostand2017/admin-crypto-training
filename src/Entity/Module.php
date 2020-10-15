@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 
 /**
  * Module
@@ -43,7 +44,7 @@ class Module
     private $createdat;
 
     /**
-     * @var \Course
+     * @var Course
      *
      * @ORM\ManyToOne(targetEntity="Course")
      * @ORM\JoinColumns({
@@ -51,6 +52,17 @@ class Module
      * })
      */
     private $course;
+
+    /**
+     * @var PersistentCollection
+     * @ORM\OneToMany(targetEntity="Lesson", mappedBy="module", cascade={"persist", "remove"})
+     */
+    private  $lessons;
+
+    public function __construct()
+    {
+        $this->createdat = new \DateTime();
+    }
 
     public function getId(): ?int
     {
@@ -103,6 +115,22 @@ class Module
         $this->course = $course;
 
         return $this;
+    }
+
+    /**
+     * @return PersistentCollection
+     */
+    public function getLessons(): PersistentCollection
+    {
+        return $this->lessons;
+    }
+
+    /**
+     * @param PersistentCollection $lessons
+     */
+    public function setLessons(PersistentCollection $lessons): void
+    {
+        $this->lessons = $lessons;
     }
 
 

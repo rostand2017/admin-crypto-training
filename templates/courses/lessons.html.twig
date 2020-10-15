@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Leçons{% endblock %}
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{{ path('courses') }}">Courses</a></li>
+    <li class="breadcrumb-item"><a href="{{ path('modules', {course: module.course.id}) }}">{{ module.course.title }}</a></li>
+    <li class="breadcrumb-item"><a href="#">{{ module.title }}</a></li>
+{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Leçons du module "{{ module.title }}"</h5>
+                    <span class="d-block m-t-5">Ajoutez des leçons à ce module. Vous avez la possibilité d'ajouter des support de cours pour la leçon</span>
+                </div>
+                <div class="card-body table-border-style">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Titre de la leçon</th>
+                                <th>Date d'ajout</th>
+                                <th class="text-right"><a href="#editModal" data-toggle="modal" data-url="{{ path('new_lesson', {module: module.id}) }}" class="btn btn-sm btn-danger" id="newModal">+ Ajouter</a></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                {% for lesson in lessons %}
+                                    <tr class="{% if loop.index%2 == 0 %}table-warning{% endif %}">
+                                        <td><a href="{{ path('sections', {lesson: lesson.id}) }}">{{ loop.index }}</a></td>
+                                        <td><a href="{{ path('sections', {lesson: lesson.id}) }}">{{ lesson.title }}</a></td>
+                                        <td>{{ lesson.createdAt | date('d M Y') }}</td>
+                                        <td class="text-right">
+                                            <div class="btn-group mb-2 mr-2">
+                                                <button class="btn btn-outline-danger btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">action</button>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item editModal" href="#editModal" data-toggle="modal" data-url="{{ path('edit_lesson', {lesson: lesson.id, module: module.id}) }}" data-title="{{ lesson.title }}" data-id="{{ lesson.id }}">modifier</a>
+                                                    <a class="dropdown-item deleteElt" href="#" data-url="{{ path('delete_lesson', {lesson: lesson.id, module: module.id}) }}">supprimer</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% else %}
+                                    <tr><td colspan="4" class="text-center"><i class="feather icon-trash"></i>Aucune leçon disponible</td></tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="navigation">
+                        {{ knp_pagination_render(pagination) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Leçon</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <form method="post" id="form">
+                    <div id="alert" class="text-center"></div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input type="text" name="title" required class="form-control" id="title" placeholder="Titre de la leçon">
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" name="video" class="custom-file-input" id="video">
+                            <label class="custom-file-label" for="video">Ajoutez une vidéo d'introduction...</label>
+                        </div>
+                        <div class="custom-file" id="filesContainer">
+                            <input type="file" multiple name="files" class="custom-file-input" id="files">
+                            <label class="custom-file-label" for="files">Ajoutez des supports de cours...</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        <button class="btn btn-primary m-2" type="submit" id="sendBtn">
+                            <span class="spinner-border spinner-border-sm" role="status" id="loadSendBtn" style="display: none;"></span>
+                            <span class="btn-text" id="textSendBtn">Enregistrer</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('assets/js/lesson.js') }}"></script>
+{% endblock %}

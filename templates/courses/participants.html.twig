@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Participants{% endblock %}
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{{ path('courses') }}">Courses</a></li>
+    <li class="breadcrumb-item"><a href="{{ path('modules', {course: course.id}) }}">{{ course.title }}</a></li>
+    <li class="breadcrumb-item"><a href="#">participants</a></li>
+{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Participants du cours "{{ course.title }}"</h5>
+                </div>
+                <div class="card-body table-border-style">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nom</th>
+                                <th>Email</th>
+                                <th>Date d'inscription</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                {% for subcription in pagination %}
+                                    <tr class="{% if loop.index%2 == 0 %}table-warning{% endif %}">
+                                        <td>{{ loop.index }}</td>
+                                        <td>{{ subcription.user.name }}</td>
+                                        <td>{{ subcription.user.emal }}</td>
+                                        <td>{{ subcription.createdAt | date('d M Y') }}</td>
+                                    </tr>
+                                {% else %}
+                                    <tr><td colspan="4" class="text-center"><i class="feather icon-trash"></i>Aucun participant au cours</td></tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}{% endblock %}

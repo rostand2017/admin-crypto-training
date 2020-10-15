@@ -9,6 +9,7 @@
 namespace App\Controller\Courses;
 
 
+use App\Entity\Category;
 use App\Entity\Course;
 use App\Entity\Subcription;
 use Knp\Component\Pager\PaginatorInterface;
@@ -25,31 +26,32 @@ class CoursesController extends  AbstractController
      */
     public function indexAction(Request $request, PaginatorInterface $paginator){
         $em = $this->getDoctrine()->getManager();
-        $courses = $em->getRepository(Course::class)->findBy([], ['createdAt'=>'desc']);
+        $courses = $em->getRepository(Course::class)->findBy([], ['createdat'=>'desc']);
+        $categories = $em->getRepository(Category::class)->findAll();
         $pagination = $paginator->paginate(
             $courses,
             $request->query->getInt('page', 1),
             10
         );
-        return $this->render('courses/index.html.twig', array("pagination" =>$pagination));
+        return $this->render('courses/index.html.twig', array("pagination" =>$pagination, "categories"=>$categories));
     }
 
     /**
-     * @Route("/courses/{course}/participants", name="courses", requirements={"course"="\d+"})
+     * @Route("/courses/{course}/participants", name="users_courses", requirements={"course"="\d+"})
      */
     public function usersAction(Request $request, PaginatorInterface $paginator, Course $course){
         $em = $this->getDoctrine()->getManager();
-        $subscriptions = $em->getRepository(Subcription::class)->findBy(["course"=>$course], ['createdAt'=>'desc']);
+        $subscriptions = $em->getRepository(Subcription::class)->findBy(["course"=>$course], ['createdat'=>'desc']);
         $pagination = $paginator->paginate(
             $subscriptions,
             $request->query->getInt('page', 1),
             10
         );
-        return $this->render('courses/participants.html.twig', array("pagination" =>$pagination));
+        return $this->render('courses/participants.html.twig', array("pagination" =>$pagination, "course"=>$course));
     }
 
     /**
-     * @Route("/categories/new", name="new_course")
+     * @Route("/courses/new", name="new_course")
      */
     public function newCoursAction(Request $request){
 
@@ -59,6 +61,11 @@ class CoursesController extends  AbstractController
         $title = $post->get("title");
         $description = $post->get("description");
         $price = $post->get("price");
+        $category = $post->get("category");
+
+        $category = $em->getRepository(Category::class)->find($category);
+        if(!$category)
+            return new JsonResponse(['status'=>1, 'mes'=>'Selectionnez une catégorie']);
 
         if($title == '' || $description == '' || $price < 0){
             return new JsonResponse(array(
@@ -77,7 +84,7 @@ class CoursesController extends  AbstractController
         }catch (\Exception $e){
             return new JsonResponse(array(
                 "status"=>1,
-                "mes"=>"Une erreur est survenue lors du chargement de la vidéo/image"
+                "mes"=>$e->getMessage()
             ));
         }
 
@@ -86,7 +93,8 @@ class CoursesController extends  AbstractController
         $course->setPrice($price);
         $course->setDescription($description);
         $course->setPhoto($photo)
-            ->setVideo($video);
+            ->setVideo($video)
+            ->setCategory($category);
         $em->persist($course);
         $em->flush();
         return new JsonResponse(array(
@@ -96,7 +104,7 @@ class CoursesController extends  AbstractController
     }
 
     /**
-     * @Route("/categories/{course}/edit", name="edit_course", requirements={"course"="\d+"})
+     * @Route("/courses/{course}/edit", name="edit_course", requirements={"course"="\d+"})
      */
     public function editCoursAction(Request $request, Course $course){
 
@@ -106,7 +114,11 @@ class CoursesController extends  AbstractController
         $title = $post->get("title");
         $description = $post->get("description");
         $price = $post->get("price");
+        $category = $post->get("category");
 
+        $category = $em->getRepository(Category::class)->find($category);
+        if(!$category)
+            return new JsonResponse(['status'=>1, 'mes'=>'Selectionnez une catégorie']);
         if($title == '' || $description == '' || $price < 0){
             return new JsonResponse(array(
                 "status"=>1,
@@ -115,27 +127,28 @@ class CoursesController extends  AbstractController
         }
 
         try{
-            if(!$request->files->get('photo')){
+            if($request->files->get('photo')){
                 $photo = $this->uploadImage($request->files->get('photo'));
                 $this->removeFile($this->getParameter("images_courses_directory").$course->getPhoto());
                 $course->setPhoto($photo);
             }
 
-            if(!$request->files->get('video')){
+            if($request->files->get('video')){
                 $video = $this->uploadVideo($request->files->get('video'));
                 $this->removeFile($this->getParameter("videos_courses_directory").$course->getVideo());
-                $course->setPhoto($video);
+                $course->setVideo($video);
             }
         }catch (\Exception $e){
             return new JsonResponse(array(
                 "status"=>1,
-                "mes"=>"Une erreur est survenue lors du chargement de la vidéo/image"
+                "mes"=>$e->getMessage(),
             ));
         }
 
-        $course->setTitle($title);
-        $course->setPrice($price);
-        $course->setDescription($description);
+        $course->setTitle($title)
+            ->setPrice($price)
+            ->setDescription($description)
+            ->setCategory($category);
         $em->persist($course);
         $em->flush();
         return new JsonResponse(array(
@@ -145,7 +158,7 @@ class CoursesController extends  AbstractController
     }
 
     /**
-     * @Route("/categories/{course}/delete", name="delete_course", requirements={"course"="\d+"})
+     * @Route("/courses/{course}/delete", name="delete_course", requirements={"course"="\d+"})
      */
     public function deleteCoursAction(Course $course){
 

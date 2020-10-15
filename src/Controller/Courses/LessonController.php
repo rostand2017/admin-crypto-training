@@ -25,9 +25,10 @@ class LessonController extends AbstractController
      * @Route("modules/{module}/lessons", name="lessons", requirements={"module"="\d+"})
      */
     public function indexAction(Module $module){
-        $lessons = $this->getDoctrine()->getRepository(Lesson::class)->findBy(['module'=>$module], ['createdAt'=>'desc']);
-        return $this->render("modules/modules.html.twig", array(
-            "lessons" => $lessons
+        $lessons = $this->getDoctrine()->getRepository(Lesson::class)->findBy(['module'=>$module], ['createdat'=>'asc']);
+        return $this->render("courses/lessons.html.twig", array(
+            "lessons" => $lessons,
+            "module" => $module
         ));
     }
 
@@ -67,7 +68,7 @@ class LessonController extends AbstractController
         if($request->files->get('files')){
             $lesson = $em->getRepository(Lesson::class)->find($lesson->getId());
             try{
-                $paths = $this->uploadFiles($request->files->get('files'));
+                $paths = $this->uploadFiles($request->files->get('files'), $this->getParameter("supports_courses_directory"));
                 foreach ($paths as $path){
                     $supportFile = new Supportfiles();
                     $supportFile->setPath($path);
@@ -76,7 +77,7 @@ class LessonController extends AbstractController
                     $em->flush();
                 }
             }catch (\Exception $e){
-                return new JsonResponse(array("status"=>1, "mes"=>"Une erreur est survenue lors du chargement de la vidéo"));
+                return new JsonResponse(array("status"=>1, "mes"=>$e->getMessage()));
             }
         }
 
@@ -105,11 +106,11 @@ class LessonController extends AbstractController
         $lesson->setTitle($title);
         if($request->files->get('video')){
             try{
-                $this->removeFile($this->getParameter("images_courses_directory").$lesson->getVideo());
+                $this->removeFile($this->getParameter("videos_courses_directory").$lesson->getVideo());
                 $video= $this->uploadVideo($request->files->get('video'));
                 $lesson->setVideo($video);
             }catch (\Exception $e){
-                return new JsonResponse(array("status"=>1, "mes"=>"Une erreur est survenue lors du chargement de la vidéo"));
+                return new JsonResponse(array("status"=>1, "mes"=>"Une erreur est survenue lors du chargement de la vidéo", "error"=>$e->getMessage()));
             }
         }
 
@@ -182,15 +183,10 @@ class LessonController extends AbstractController
      * @param UploadedFile $file
      * @throws \Exception
      */
-    private function uploadImage(UploadedFile $file) {
-        $imageAccepted = array("jpg", "png", "jpeg");
-        if( in_array(strtolower($file->guessExtension()), $imageAccepted) ){
-            $fileName = $this->getUniqueFileName().".".$file->guessExtension();
-            $file->move($this->getParameter("images_courses_directory"), $fileName);
-            return $fileName;
-        }else{
-            throw new \Exception("Format d'image incorrect", 100);
-        }
+    private function uploadOneFile(UploadedFile $file, $directory) {
+        $fileName = $this->getUniqueFileName().".".$file->guessExtension();
+        $file->move($directory, $fileName);
+        return $fileName;
     }
 
     /**
@@ -208,8 +204,23 @@ class LessonController extends AbstractController
         }
     }
 
+    /**
+     * @param array $files
+     * @throws \Exception
+     */
+    private function uploadFiles($files, $dir): array {
+        $paths = [];
+        if(empty($files))
+            return $paths;
+        foreach ($files as $file){
+            $path = $this->uploadOneFile($file, $dir);
+            array_push($paths, $path);
+        }
+        return $paths;
+    }
+
     private function removeFile($path){
-        if(file_exists($path))
+        if(file_exists($path) && fileperms($path) == 0)
             unlink($path);
     }
 

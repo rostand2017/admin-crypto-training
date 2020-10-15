@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ course.title }} - Modules{% endblock %}
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{{ path('courses') }}">Courses</a></li>
+    <li class="breadcrumb-item"><a href="#">{{ course.title }}</a></li>
+{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Modules du cours "{{ course.title }}"</h5>
+                    <span class="float-right"><a href="#editModal" data-toggle="modal" class="btn btn-sm btn-danger" id="newModal">+ Ajouter</a></span>
+                    <span class="float-right mr-2"><b>{{ totalDuration }}</b></span>
+                    <span class="d-block m-t-5">Ajoutez des modules à ce cours ici.</span>
+                </div>
+                <div class="card-body table-border-style">
+                    <div class="table-responsive">
+                        <div class="accordion" id="accordionExample">
+                            {% for module in modules %}
+                                <div class="card mb-0">
+                                    <div class="card-header" id="heading_{{ module.id }}">
+                                        <h5 class="mb-0">
+                                            <a href="{{ path('lessons', {module: module.id}) }}" data-toggle="collapse" data-target="#collapse_{{ module.id }}" aria-expanded="true" aria-controls="collapseOne">
+                                                {{ module.title }}
+                                            </a>
+                                        </h5>
+                                        <a class="btn btn-sm btn-outline-danger deleteElt float-right ml-2 mb-2" href="#" data-url="{{ path('delete_module', {module: module.id, course: course.id}) }}"><i class="fa fa-trash"></i></a>
+                                        <span class="badge badge-warning float-right">{{ module.duration }} Min</span>
+                                    </div>
+                                    <div id="collapse_{{ module.id }}" class="collapse" aria-labelledby="heading_{{ module.id }}" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="text-center">
+                                                <a class="btn btn-sm btn-outline-primary editModal" href="#editModal" data-toggle="modal"
+                                                   data-title="{{ module.title }}" data-duration="{{ module.duration }}" data-id="{{ module.id }}"
+                                                   data-url="{{ path('edit_module', {course: course.id}) }}">modifier</a>
+                                                <a href="{{ path('lessons', {module: module.id}) }}" class="btn btn-sm btn-primary">Toutes les leçons</a>
+                                            </div>
+                                            <table class="table table-hover">
+                                                {% for lesson in module.lessons %}
+                                                    <tr>
+                                                        <td><a href="">{{ lesson.title }}</a></td>
+                                                    </tr>
+                                                {% endfor %}
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="text-center">Aucun module ajouté</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Module</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <form method="post" action="{{ path('edit_module', {course: course.id}) }}" id="form">
+                    <div id="alert" class="text-center"></div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input type="hidden" name="id" id="id">
+                            <input type="text" name="title" required class="form-control" id="title" placeholder="Titre du module">
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="duration" required class="form-control" id="duration" placeholder="Durée du module (en minute)">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        <button class="btn btn-primary m-2" type="submit" id="sendBtn">
+                            <span class="spinner-border spinner-border-sm" role="status" id="loadSendBtn" style="display: none;"></span>
+                            <span class="btn-text" id="textSendBtn">Enregistrer</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('assets/js/module.js') }}"></script>
+{% endblock %}

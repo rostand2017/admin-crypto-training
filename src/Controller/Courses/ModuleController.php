@@ -22,10 +22,27 @@ class ModuleController extends AbstractController
      * @Route("courses/{course}/modules", name="modules", requirements={"course"="\d+"})
      */
     public function indexAction(Course $course){
-        $modules = $this->getDoctrine()->getRepository(Module::class)->findBy(['course'=>$course], ['createdAt'=>'desc']);
+        $modules = $this->getDoctrine()->getRepository(Module::class)->findBy(['course'=>$course], ['createdat'=>'asc']);
+        $totalDuration = $this->calculateDuration($modules);
         return $this->render("courses/modules.html.twig", array(
-            "modules" => $modules
+            "modules" => $modules,
+            "course" => $course,
+            "totalDuration" => $totalDuration
         ));
+    }
+
+    private function calculateDuration($modules): string {
+        $duration = 0;
+        if(empty($modules))
+            return $duration." Minute";
+        foreach ($modules as $module ){
+            $duration += $module->getDuration();
+        }
+        if($duration > 59){
+            $hours = floor($duration/60);
+            $mins = $duration%60;
+        }
+        return "$hours H $mins minutes";
     }
 
     /**
@@ -45,7 +62,6 @@ class ModuleController extends AbstractController
             {
                 $module->setTitle($title);
                 $module->setDuration($duration);
-                $module->setCourse($course);
                 $em->persist($module);
                 $em->flush();
                 return new JsonResponse(array(

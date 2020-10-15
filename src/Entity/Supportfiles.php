@@ -22,9 +22,9 @@ class Supportfiles
     private $id;
 
     /**
-     * @var int|null
+     * @var string
      *
-     * @ORM\Column(name="path", type="integer", nullable=true)
+     * @ORM\Column(name="path", type="string", nullable=false)
      */
     private $path;
 
@@ -43,12 +43,12 @@ class Supportfiles
         return $this->id;
     }
 
-    public function getPath(): ?int
+    public function getPath(): ?string
     {
         return $this->path;
     }
 
-    public function setPath(?int $path): self
+    public function setPath(?string $path): self
     {
         $this->path = $path;
 

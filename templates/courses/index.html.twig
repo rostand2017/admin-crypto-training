@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cours{% endblock %}
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="#">Cours</a></li>
+{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Cours</h5>
+                    <a href="#editModal" data-toggle="modal" data-url="{{ path('new_course') }}" class="btn btn-sm btn-danger float-right" id="newModal">+ Ajoutez un cours</a>
+                    <span class="d-block m-t-5">Ajoutez et editez un cours.</span>
+                </div>
+                <div class="card-body table-border-style">
+                    <div class="card-columns">
+                        {% for course in pagination %}
+                            <div class="card">
+                                <div class="btn-group mb-2 mr-2 float-right">
+                                    <button class="btn btn-outline-danger btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item editModal" href="#editModal" data-toggle="modal"
+                                           data-title="{{ course.title }}" data-description="{{ course.description }}" data-photo="{{ "uploads/images/"~course.photo }}"
+                                           data-id="{{ course.id }}" data-price="{{ course.price }}" data-category="{{ course.category.id }}"
+                                           data-url="{{ path('edit_course', {course: course.id}) }}">modifier</a>
+                                        <a class="dropdown-item deleteElt" href="#" data-url="{{ path('delete_course', {course: course.id}) }}">supprimer</a>
+                                        <a class="dropdown-item" href="{{ path('users_courses', {course: course.id}) }}">Participants</a>
+                                    </div>
+                                </div>
+                                <a href="#videoModal" chref="uploads/videos/{{ course.video }}" class="videoLink" data-toggle="modal">
+                                    <img class="img-fluid card-img-top" src="uploads/images/{{ course.photo }}" alt="Card image courses">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ course.title }}</h5>
+                                    <p class="card-text">{{ course.description }}</p>
+                                    <a href="{{ path('modules', {course: course.id}) }}" title="Voir les leçons" class="btn  btn-primary">ouvrir</a>
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-muted">Ajouté le {{ course.createdAt | date('d M Y') }}</small>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="text-center"><span><i class="feather icon-trash"></i>Aucun cours disponible</span></div>
+                        {% endfor %}
+                    </div>
+                    <div class="navigation">
+                        {{ knp_pagination_render(pagination) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cours</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <form method="post" id="form" enctype="multipart/form-data">
+                    <div id="alert" class="text-center"></div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input type="text" name="title" required class="form-control" id="title" placeholder="Entrez le titre du cours">
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="price" required class="form-control" id="price" placeholder="Entrez le prix du cours">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="description" class="form-control" placeholder="Ajoutez une description du cours" id="description" cols="30" rows="10"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <select class="custom-select" name="category" required id="category">
+                                <option value="">Selectionnez une catégorie</option>
+                                {% for category in categories %}
+                                    <option value="{{ category.id }}">{{ category.category }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" name="photo" class="custom-file-input" id="photo">
+                            <label class="custom-file-label" for="photo">Ajoutez une photo...</label>
+                            <div class="invalid-feedback">Example invalid custom file feedback</div>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" name="video" class="custom-file-input" id="video">
+                            <label class="custom-file-label" for="video">Ajoutez une vidéo...</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        <button class="btn btn-primary m-2" type="submit" id="sendBtn">
+                            <span class="spinner-border spinner-border-sm" role="status" id="loadSendBtn" style="display: none;"></span>
+                            <span class="btn-text" id="textSendBtn">Enregistrer</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content justify-content-center">
+                <video src="" id="videoPlayer" controls style="width: 100%"></video>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+{% block javascripts %}
+    <script src="assets/js/course.js"></script>
+{% endblock %}
