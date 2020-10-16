@@ -57,7 +57,7 @@ $(document).ready(function() {
         var url = $(this).data('url');
         swal({
                 title: "Warning",
-                text: "Êtes vous sûr de vouloir supprimer cette section ?",
+                text: "Êtes vous sûr de vouloir supprimer cette leçon?",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
@@ -77,55 +77,6 @@ $(document).ready(function() {
                             } else {
                                 // toastr.error(json.mes,'Oups!');
                             }
-                        },
-                        error: function(jqXHR, textStatus, errorThrown){}
-                    });
-                }
-            });
-    });
-
-
-    // Files deletion
-    $('.deleteFile').on('click', function (e) {
-        e.preventDefault();
-        var url = $(this).attr('href');
-        var elt = $(this);
-        swal({
-                title: "Warning",
-                text: "Êtes vous sûr de vouloir supprimer ce fichier ?",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Oui",
-                cancelButtonText: "Annuler",
-                closeOnConfirm: true
-            },
-            function(isConfirm){
-                if (isConfirm) {
-                    $.ajax({
-                        type: 'post',
-                        url : url,
-                        datatype: 'json',
-                        beforeSend: function () {
-                            elt.prop('disabled',true);
-                            $('#loadFiles').show();
-                            $('#alertFile').get(0).innerHTML = "";
-                        },
-                        success: function (json) {
-                            if (json.status === 0) {
-                                $('#alertFile').append(
-                                    "<span class='alert alert-success'>"+ json.mes +"</span>"
-                                );
-                                $('#'+elt.data('id')).remove();
-                            } else {
-                                $('#alertFile').append(
-                                    "<span class='alert alert-danger'>"+ json.mes +"</span>"
-                                );
-                            }
-                        },
-                        complete: function () {
-                            elt.prop('disabled',false);
-                            $('#loadFiles').hide();
                         },
                         error: function(jqXHR, textStatus, errorThrown){}
                     });

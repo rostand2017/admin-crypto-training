@@ -10,6 +10,7 @@ namespace App\Controller\Courses;
 
 use App\Entity\Lesson;
 use App\Entity\Section;
+use App\Entity\Supportfiles;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -19,12 +20,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class SectionController extends AbstractController
 {
     /**
-     * @Route("lessons/{lesson}/sections", name="sections", requirements={"lesson"="\d+"})
+     * @Route("lessons/{lesson}", name="sections", requirements={"lesson"="\d+"})
      */
     public function indexAction(Lesson $lesson){
-        $sections = $this->getDoctrine()->getRepository(Lesson::class)->findBy(['lesson'=>$lesson], ['createdAt'=>'desc']);
-        return $this->render("lessons/lessons.html.twig", array(
-            "sections" => $sections
+        $sections = $this->getDoctrine()->getRepository(Section::class)->findBy(['lesson'=>$lesson], ['id'=>'asc']);
+        $supportFiles = $this->getDoctrine()->getRepository(Supportfiles::class)->findBy(['lesson'=>$lesson], ['id'=>'asc']);
+        return $this->render("courses/lesson.html.twig", array(
+            "sections" => $sections,
+            "lesson" => $lesson,
+            "supportFiles" => $supportFiles,
         ));
     }
 

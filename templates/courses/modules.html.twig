@@ -41,7 +41,7 @@
                                             <table class="table table-hover">
                                                 {% for lesson in module.lessons %}
                                                     <tr>
-                                                        <td><a href="">{{ lesson.title }}</a></td>
+                                                        <td><a href="{{ path('sections', {lesson: lesson.id}) }}">{{ lesson.title }}</a></td>
                                                     </tr>
                                                 {% endfor %}
                                             </table>
