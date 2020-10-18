@@ -9,13 +9,28 @@
     <li class="breadcrumb-item"><a href="#">{{ lesson.title }}</a></li>
 {% endblock %}
 {% block body %}
+    <style>
+       /*cls
+        h1,h2,h3,h4,h5,h6,strong{
+            color: #0f6674;
+        }*/
+    </style>
     <div class="row">
         {% if lesson.video %}
             <div class="col-md-12">
                 <div class="card">
+                    <div class="mt-2 ml-2">
+                        {% for _lesson in lessons %}
+                            <a href="{{ path('sections', {lesson: _lesson.id}) }}" title="{{ _lesson.title }}"
+                               data-toggle="tooltip" data-placement="bottom"
+                               class="btn btn-sm {% if _lesson.id == lesson.id %}btn-primary{% else %}btn-outline-primary{% endif %}">
+                                {{ loop.index }}
+                            </a>
+                        {% endfor %}
+                    </div>
                     <div class="card-header">
                         <h5>Leçon "{{ lesson.title }}"</h5>
-                        <span class="text-right"><a href="#filesModal" data-toggle="modal" class="btn btn-sm btn-danger float-right" id="newModal">support de cours</a></span>
+                        <span class="text-right"><a href="#filesModal" data-toggle="modal" class="btn btn-sm btn-danger float-right">support de cours</a></span>
                     </div>
                     <div class="card-body">
                         <video src="{{ asset('uploads/videos/'~lesson.video) }}" controls style="width: 100%"></video>
@@ -29,31 +44,64 @@
                     <h5>Sections de la leçon "{{ lesson.title }}"</h5>
                     <span class="text-right"><a href="#editModal" data-toggle="modal" data-url="{{ path('new_section', {lesson: lesson.id}) }}" class="btn btn-sm btn-danger float-right" id="newModal">+ Ajouter</a></span>
                     <span class="d-block m-t-5">Ajoutez des sections à cette leçon</span>
+                    {% for section in sections %}
+                        <hr>
+                        <div class="col-md-12 text-right">
+                            <a href="#" class="btn btn-outline-primary btn-sm editModal" data-target="#editModal" data-toggle="modal"
+                               data-paragraph="{{ section.paragraph }}" data-url="{{ path('edit_section', {lesson: lesson.id, section: section.id}) }}">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                            <a href="#" class="btn btn-outline-danger btn-sm deleteElt" data-url="{{ path('delete_section', {lesson: lesson.id, section: section.id}) }}">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </div>
+                        {% if section.image %}
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <a href="{{ asset('uploads/images/'~section.image) }}" target="_blank">
+                                        <img src="{{ asset('uploads/images/'~section.image) }}" style="" alt="" class="card-img">
+                                    </a>
+                                </div>
+                            </div>
+                        {% endif %}
+                        <span class="spinner-border spinner-border-sm loaderParagraph" role="status" style="width: 40px; height: 40px;"></span>
+                        <p class="paragraph" style="display: none">{{ section.paragraph }}</p>
+                    {% endfor %}
+                </div>
+                <div class="card-body text-center">
+                    <span class="text-right">
+                        <a href="#editModal" data-toggle="modal" data-url="{{ path('new_section', {lesson: lesson.id}) }}"
+                           class="btn btn-block btn-outline-primary float-right" id="newModal2">+ Ajouter une nouvelle section</a>
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Leçon</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">SECTION</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <form method="post" id="form">
                     <div id="alert" class="text-center"></div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <input type="text" name="title" required class="form-control" id="title" placeholder="Titre de la leçon">
+                            <div class="custom-file">
+                                <input type="file" name="image" class="custom-file-input" id="image">
+                                <label class="custom-file-label" for="image">Ajoutez une image d'entête de section(facultatif)...</label>
+                            </div>
                         </div>
-                        <div class="custom-file">
-                            <input type="file" name="video" class="custom-file-input" id="video">
-                            <label class="custom-file-label" for="video">Ajoutez une vidéo d'introduction...</label>
+                        <div class="document-editor">
+                            <div id="toolbar-container"></div>
+                            <div class="content-container">
+                                <div id="editor"></div>
+                            </div>
                         </div>
-                        <div class="custom-file" id="filesContainer">
-                            <input type="file" multiple name="files" class="custom-file-input" id="files">
-                            <label class="custom-file-label" for="files">Ajoutez des supports de cours...</label>
+                        <div class="form-group" style="display: none">
+                            <textarea placeholder="Contenu de la section" name="paragraph" id="paragraph" cols="30" rows="10" class="form-control"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -93,6 +141,15 @@
                             <tr class="text-center"> <td colspan="2">Aucun support de cours ajouté</td></tr>
                         {% endfor %}
                     </table>
+                    <form action="{{ path('add_support_files', {lesson: lesson.id}) }}" method="post" id="formFiles">
+                        <div class="form-group">
+                            <div class="custom-file">
+                                <input type="file" name="files[]" multiple class="custom-file-input" id="files">
+                                <label class="custom-file-label" for="files">Ajoutez des nouveaux supports pour cette leçon...</label>
+                            </div>
+                            <button class="btn btn-primary btn-block" type="submit" id="filesBtn"><i class="fa fa-save"></i></button>
+                        </div>
+                    </form>
                     <div class="text-center">
                         <span class="spinner-border spinner-border-sm text-center" role="status" id="loadFiles" style="width: 50px; height: 50px;display: none"></span>
                     </div>
@@ -103,5 +160,6 @@
 
 {% endblock %}
 {% block javascripts %}
+    <script src="{{ asset('assets/js/plugins/ckeditor5-build-decoupled-document/ckeditor.js') }}"></script>
     <script src="{{ asset('assets/js/lesson.js') }}"></script>
 {% endblock %}

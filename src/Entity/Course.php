@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 
 /**
  * Course
@@ -82,6 +83,18 @@ class Course
      * })
      */
     private $admin;
+
+    /**
+     * @var PersistentCollection
+     * @ORM\OneToMany(targetEntity="Subcription", mappedBy="course", cascade={"persist", "remove"})
+     */
+    private  $subcriptions;
+
+    /**
+     * @var PersistentCollection
+     * @ORM\OneToMany(targetEntity="Module", mappedBy="course", cascade={"persist", "remove"})
+     */
+    private  $modules;
 
     public function __construct()
     {
@@ -189,5 +202,36 @@ class Course
         return $this;
     }
 
+    /**
+     * @return PersistentCollection
+     */
+    public function getSubcriptions(): PersistentCollection
+    {
+        return $this->subcriptions;
+    }
+
+    /**
+     * @param PersistentCollection $subcriptions
+     */
+    public function setSubcriptions(PersistentCollection $subcriptions): void
+    {
+        $this->subcriptions = $subcriptions;
+    }
+
+    /**
+     * @return PersistentCollection
+     */
+    public function getModules(): PersistentCollection
+    {
+        return $this->modules;
+    }
+
+    /**
+     * @param PersistentCollection $modules
+     */
+    public function setModules(PersistentCollection $modules): void
+    {
+        $this->modules = $modules;
+    }
 
 }

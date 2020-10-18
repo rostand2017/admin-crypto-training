@@ -175,7 +175,8 @@ class CoursesController extends  AbstractController
         }catch (\Exception $e){
             return new JsonResponse(array(
                 "status"=>1,
-                "mes"=>"Une erreur est survenue, reessayé plutard."
+                "mes"=>"Une erreur est survenue, reessayé plutard.",
+                "error"=>$e->getMessage(),
             ));
         }
     }
@@ -211,7 +212,7 @@ class CoursesController extends  AbstractController
     }
 
     private function removeFile($path){
-        if(file_exists($path))
+        if(file_exists($path) && fileperms($path) == 0)
             unlink($path);
     }
 

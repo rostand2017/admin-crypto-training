@@ -41,8 +41,9 @@ class ModuleController extends AbstractController
         if($duration > 59){
             $hours = floor($duration/60);
             $mins = $duration%60;
+            return "$hours H $mins minutes";
         }
-        return "$hours H $mins minutes";
+        return "$duration minutes";
     }
 
     /**
@@ -111,8 +112,9 @@ class ModuleController extends AbstractController
             ));
         }catch (\Exception $e){
             return new JsonResponse(array(
-                "status"=>1,
-                "mes"=>"Impossible de supprimer cette catégorie"
+                "status" => 1,
+                "mes" => "Impossible de supprimer ce module",
+                "error" => $e->getMessage(),
             ));
         }
     }

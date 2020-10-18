@@ -9,8 +9,10 @@
 namespace App\Controller\Courses;
 
 
+use App\Entity\LessonFull;
 use App\Entity\Module;
 use App\Entity\Lesson;
+use App\Entity\Section;
 use App\Entity\Supportfiles;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -147,6 +149,15 @@ class LessonController extends AbstractController
         }
     }
 
+    private function deleteEntityCollection($entities, ObjectManager $em){
+        if(!empty($entities)){
+            foreach ($entities as $entity) {
+                $em->remove($entity);
+                $em->flush();
+            }
+        }
+    }
+
 
     /**
      * @Route("lessons/{lesson}/files/{supportfiles}/delete", name="delete_support_files", requirements={"lesson"="\d+", "supportfiles"="\d+"})
@@ -170,9 +181,38 @@ class LessonController extends AbstractController
         }
     }
 
+
+    /**
+     * @Route("lessons/{lesson}/files/new", name="add_support_files", requirements={"lesson"="\d+"})
+     */
+    public function addSupportFiles(Lesson $lesson, Request $request){
+        $em = $this->getDoctrine()->getManager();
+        try{
+            $file = new Supportfiles();
+            $file->setLesson($lesson);
+            $paths = $this->uploadFiles($request->files->get('files'), $this->getParameter("supports_courses_directory"));
+            foreach ($paths as $path){
+                $supportFile = new Supportfiles();
+                $supportFile->setPath($path);
+                $supportFile->setLesson($lesson);
+                $em->persist($supportFile);
+                $em->flush();
+            }
+            return new JsonResponse(array(
+                "status"=>0,
+                "mes"=>"Fichiers ajoutés avec succès"
+            ));
+        }catch (\Exception $e){
+            return new JsonResponse(array(
+                "status"=>1,
+                "mes"=>"Une erreur est survenue"
+            ));
+        }
+    }
+
     private function deleteAllSupportFiles($files, ObjectManager $em){
         foreach ($files as $file){
-            $em->remove($files);
+            $em->remove($file);
             $em->flush();
             $this->removeFile($this->getParameter("supports_courses_directory").$file->getPath());
         }

@@ -6,8 +6,26 @@
     <li class="breadcrumb-item"><a href="#">dashboard</a></li>
 {% endblock %}
 {% block body %}
-    <div class="example-wrapper">
-        <h1>Hello {{ controller_name }}! ✅</h1>
-        This friendly message is coming from
+    <div class="col-md-12">
+        <div class="card-deck">
+            <div class="card">
+                <div class="card-header">
+                    <h2>{{ suscriptions }} suscription(s)</h2>
+                </div>
+                <div class="card-body text-center">Nombre de souscriptions aux cours par les utilisateurs</div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h2>{{ users }} utilisateur(s)</h2>
+                </div>
+                <div class="card-body text-center">Nombre d'utilisateurs utilisant l'application</div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h2>{{ courses }} Cours</h2>
+                </div>
+                <div class="card-body text-center">Nombre cours disponible sur la plateforme</div>
+            </div>
+        </div>
     </div>
 {% endblock %}

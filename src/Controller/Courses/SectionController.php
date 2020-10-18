@@ -23,12 +23,14 @@ class SectionController extends AbstractController
      * @Route("lessons/{lesson}", name="sections", requirements={"lesson"="\d+"})
      */
     public function indexAction(Lesson $lesson){
+        $lessons = $this->getDoctrine()->getRepository(Lesson::class)->findBy(['module'=>$lesson->getModule()], ['id'=>'asc']);
         $sections = $this->getDoctrine()->getRepository(Section::class)->findBy(['lesson'=>$lesson], ['id'=>'asc']);
         $supportFiles = $this->getDoctrine()->getRepository(Supportfiles::class)->findBy(['lesson'=>$lesson], ['id'=>'asc']);
         return $this->render("courses/lesson.html.twig", array(
             "sections" => $sections,
             "lesson" => $lesson,
             "supportFiles" => $supportFiles,
+            "lessons" => $lessons,
         ));
     }
 
@@ -69,7 +71,7 @@ class SectionController extends AbstractController
     }
 
     /**
-     * @Route("lessons/{lesson}/sections/{section}edit", name="edit_section", requirements={"lesson"="\d+", "section"="\d+"})
+     * @Route("lessons/{lesson}/sections/{section}/edit", name="edit_section", requirements={"lesson"="\d+", "section"="\d+"})
      */
     public function editSectionAction(Request $request, Lesson $lesson, Section $section){
 
@@ -144,7 +146,7 @@ class SectionController extends AbstractController
 
 
     private function removeFile($path){
-        if(file_exists($path))
+        if(file_exists($path) && fileperms($path) == 0)
             unlink($path);
     }
 

@@ -1,4 +1,31 @@
 $(document).ready(function() {
+
+    // init paragraph
+    $(".loaderParagraph").hide();
+    $(".paragraph").show();
+    $('.paragraph').get().forEach(function (value) {
+      value.innerHTML = value.textContent;
+    });
+
+    // init ckeditor
+    var editor;
+    function editCkeditor() {
+        return  DecoupledEditor
+            .create( document.querySelector( '#editor' ), {
+                placeholder: 'Ajoutez un contenu à cette section'
+            })
+            .then( function (value) {
+                editor = value;
+                const toolbarContainer = document.querySelector( '#toolbar-container' );
+                toolbarContainer.prepend( value.ui.view.toolbar.element );
+                value.model.document.on( 'change:data', function(){
+                    $("#paragraph").val(editor.getData());
+                });
+            })
+            .catch(function (reason) { console.error(reason); });
+    }
+    editCkeditor();
+
     $('#form').on('submit', function (e) {
         e.preventDefault();
         var formdata = (window.FormData) ? new FormData($(this)[0]) : null;
@@ -41,15 +68,21 @@ $(document).ready(function() {
 
     $('#newModal').on('click', function () {
         $('#form').get(0).reset();
+        editor.setData("");
         $('#alert').get(0).innerHTML = "";
         $("#form").attr('action', $(this).data('url'));
-        $('#filesContainer').show();
+    });
+
+    $('#newModal2').on('click', function () {
+        $('#form').get(0).reset();
+        editor.setData("");
+        $('#alert').get(0).innerHTML = "";
+        $("#form").attr('action', $(this).data('url'));
     });
 
     $('.editModal').on('click', function () {
-        $('#title').val($(this).data('title'));
+        editor.setData($(this).data('paragraph'));
         $("#form").attr('action', $(this).data('url'));
-        $('#filesContainer').hide();
     });
 
     $('.deleteElt').on('click', function (e) {
@@ -83,7 +116,6 @@ $(document).ready(function() {
                 }
             });
     });
-
 
     // Files deletion
     $('.deleteFile').on('click', function (e) {
@@ -132,4 +164,46 @@ $(document).ready(function() {
                 }
             });
     });
+
+
+    // uploaded files
+
+    $('#formFiles').on('submit', function (e) {
+        e.preventDefault();
+        var formdata = (window.FormData) ? new FormData($(this)[0]) : null;
+        var data = (formdata !== null) ? formdata : $(this).serialize();
+        $.ajax({
+            type: 'post',
+            url: $("#formFiles").attr('action'),
+            data: data,
+            datatype: 'json',
+            processData: false,
+            contentType: false,
+            beforeSend: function () {
+                $("#filesBtn").prop('disabled',true);
+                $('#loadFiles').show();
+                $('#alertFile').get(0).innerHTML = "";
+            },
+            success: function (json) {
+                if (json.status === 0){
+                    $('#alertFile').append(
+                        "<span class='alert alert-success'>"+ json.mes +"</span>"
+                    );
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 2000);
+                }else{
+                    $('#alertFile').append(
+                        "<span class='alert alert-danger'>"+ json.mes +"</span>"
+                    );
+                }
+            },
+            complete: function () {
+                $('#filesBtn').prop('disabled',false);
+                $('#loadFiles').hide();
+            },
+            error: function(jqXHR, textStatus, errorThrown){}
+        });
+    });
+
 });

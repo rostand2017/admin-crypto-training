@@ -24,7 +24,7 @@ class Section
     /**
      * @var string
      *
-     * @ORM\Column(name="paragraph", type="string", length=254, nullable=false)
+     * @ORM\Column(name="paragraph", type="text", nullable=false)
      */
     private $paragraph;
 

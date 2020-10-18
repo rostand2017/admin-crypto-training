@@ -2,13 +2,93 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3e24d73-7e04-4c29-a1eb-f5b62e3d34a7" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/lessons.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/templates/courses/lesson.html.twig" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/LICENSE.md" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/README.md" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/ckeditor.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/ckeditor.js.map" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/sample/css/sample.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/sample/img/bg.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/sample/img/github.svg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/sample/img/logo.svg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/sample/img/umbrellas.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/af.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/ar.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/ast.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/az.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/bg.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/ca.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/cs.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/da.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/de-ch.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/de.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/el.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/en-au.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/en-gb.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/eo.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/es.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/et.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/eu.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/fa.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/fi.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/fr.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/gl.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/gu.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/he.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/hr.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/hu.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/id.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/it.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/ja.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/km.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/kn.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/ko.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/ku.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/lt.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/lv.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/ms.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/nb.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/ne.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/nl.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/no.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/oc.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/pl.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/pt-br.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/pt.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/ro.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/ru.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/si.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/sk.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/sl.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/sq.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/sr-latn.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/sr.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/sv.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/th.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/tk.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/tr.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/tt.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/ug.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/uk.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/vi.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/zh-cn.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/translations/zh.js" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/public/assets/js/lesson.js" afterPath="$PROJECT_DIR$/public/assets/js/lesson.js" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Courses/CoursesController.php" afterPath="$PROJECT_DIR$/src/Controller/Courses/CoursesController.php" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Courses/LessonController.php" afterPath="$PROJECT_DIR$/src/Controller/Courses/LessonController.php" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Courses/ModuleController.php" afterPath="$PROJECT_DIR$/src/Controller/Courses/ModuleController.php" />
       <change beforePath="$PROJECT_DIR$/src/Controller/Courses/SectionController.php" afterPath="$PROJECT_DIR$/src/Controller/Courses/SectionController.php" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Course.php" afterPath="$PROJECT_DIR$/src/Entity/Course.php" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Lesson.php" afterPath="$PROJECT_DIR$/src/Entity/Lesson.php" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Section.php" afterPath="$PROJECT_DIR$/src/Entity/Section.php" />
+      <change beforePath="$PROJECT_DIR$/templates/courses/lesson.html.twig" afterPath="$PROJECT_DIR$/templates/courses/lesson.html.twig" />
       <change beforePath="$PROJECT_DIR$/templates/courses/lessons.html.twig" afterPath="$PROJECT_DIR$/templates/courses/lessons.html.twig" />
-      <change beforePath="$PROJECT_DIR$/templates/courses/modules.html.twig" afterPath="$PROJECT_DIR$/templates/courses/modules.html.twig" />
+      <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" />
+      <change beforePath="$PROJECT_DIR$/templates/part/header.html.twig" afterPath="$PROJECT_DIR$/templates/part/header.html.twig" />
+      <change beforePath="$PROJECT_DIR$/templates/part/nav.html.twig" afterPath="$PROJECT_DIR$/templates/part/nav.html.twig" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -52,71 +132,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ModuleController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/Courses/ModuleController.php">
+      <file leaf-file-name="header.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/part/header.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="21" column="64" lean-forward="false" selection-start-line="21" selection-start-column="64" selection-end-line="21" selection-end-column="64" />
-              <folding>
-                <element signature="e#3490#3596#1#PHP" expanded="false" />
-              </folding>
+            <state relative-caret-position="102">
+              <caret line="6" column="37" lean-forward="false" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LessonController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/Courses/LessonController.php">
+      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/home/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="151" column="28" lean-forward="false" selection-start-line="151" selection-start-column="28" selection-end-line="151" selection-end-column="28" />
-              <folding>
-                <element signature="e#1102#2842#0#PHP" expanded="false" />
-                <element signature="e#4240#5003#0#PHP" expanded="false" />
-                <element signature="e#5170#5819#0#PHP" expanded="false" />
-                <element signature="e#5825#6100#0#PHP" expanded="false" />
-                <element signature="e#6479#6945#0#PHP" expanded="false" />
-                <element signature="e#7449#7522#0#PHP" expanded="false" />
-              </folding>
+            <state relative-caret-position="442">
+              <caret line="26" column="50" lean-forward="false" selection-start-line="26" selection-start-column="50" selection-end-line="26" selection-end-column="50" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SectionController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/Courses/SectionController.php">
+      <file leaf-file-name="nav.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/part/nav.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="27" column="63" lean-forward="false" selection-start-line="27" selection-start-column="63" selection-end-line="27" selection-end-column="63" />
-              <folding>
-                <element signature="e#1226#2288#0#PHP" expanded="false" />
-                <element signature="e#2436#3556#0#PHP" expanded="false" />
-                <element signature="e#3710#4342#0#PHP" expanded="false" />
-                <element signature="e#4424#4898#0#PHP" expanded="false" />
-                <element signature="e#4905#5004#0#PHP" expanded="false" />
-                <element signature="e#5010#5083#0#PHP" expanded="false" />
-              </folding>
+            <state relative-caret-position="425">
+              <caret line="25" column="21" lean-forward="false" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="lesson.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/courses/lesson.html.twig">
+      <file leaf-file-name="HomeController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Controller/HomeController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="80" column="54" lean-forward="false" selection-start-line="80" selection-start-column="54" selection-end-line="80" selection-end-column="54" />
-              <folding>
-                <element signature="e#1124#1143#0#HTML" expanded="true" />
-                <element signature="e#3669#3691#0#HTML" expanded="true" />
-                <element signature="e#5808#5855#0#HTML" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="lesson.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/assets/js/lesson.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="66" column="14" lean-forward="true" selection-start-line="66" selection-start-column="14" selection-end-line="66" selection-end-column="14" />
+            <state relative-caret-position="340">
+              <caret line="29" column="13" lean-forward="false" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -133,16 +183,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>signin</find>
-      <find>profile</find>
-      <find>Logout</find>
-      <find>Mot de pas</find>
-      <find>title</find>
-      <find>pagi</find>
-      <find>unl</find>
-      <find>Category</find>
-      <find>Course</find>
-      <find>removeFile</find>
       <find>Module</find>
       <find>Lesson</find>
       <find>Lesson $section</find>
@@ -163,6 +203,16 @@
       <find>uploadFiles</find>
       <find>Leçons</find>
       <find>lesson</find>
+      <find>paragra</find>
+      <find>toolbar-container</find>
+      <find>filesModal</find>
+      <find>$request-&gt;files</find>
+      <find>files-&gt;get('files')</find>
+      <find>$request-&gt;files-&gt;get('files')</find>
+      <find>main</find>
+      <find>filesBtn</find>
+      <find>st-&gt;files-&gt;get('files')</find>
+      <find>newModal</find>
     </findStrings>
     <replaceStrings>
       <replace>Admin</replace>
@@ -201,21 +251,16 @@
         <option value="$PROJECT_DIR$/public/assets/js/pcoded.min.js" />
         <option value="$PROJECT_DIR$/config/packages/security.yaml" />
         <option value="$PROJECT_DIR$/templates/security/login.html.twig" />
-        <option value="$PROJECT_DIR$/templates/home/index.html.twig" />
         <option value="$PROJECT_DIR$/templates/home/reset_password.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/SecurityController.php" />
         <option value="$PROJECT_DIR$/public/.gitignore" />
         <option value="$PROJECT_DIR$/src/Controller/CategoryController.php" />
         <option value="$PROJECT_DIR$/config/packages/params.yml" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/src/Controller/HomeController.php" />
         <option value="$PROJECT_DIR$/templates/home/category.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/AdminController.php" />
         <option value="$PROJECT_DIR$/src/Entity/Admin.php" />
         <option value="$PROJECT_DIR$/src/Entity/Category.php" />
-        <option value="$PROJECT_DIR$/src/Entity/Course.php" />
-        <option value="$PROJECT_DIR$/src/Entity/Lesson.php" />
-        <option value="$PROJECT_DIR$/src/Entity/Section.php" />
         <option value="$PROJECT_DIR$/src/Entity/Subcription.php" />
         <option value="$PROJECT_DIR$/src/Entity/User.php" />
         <option value="$PROJECT_DIR$/templates/home/admin.html.twig" />
@@ -227,19 +272,25 @@
         <option value="$PROJECT_DIR$/public/assets/js/module.js" />
         <option value="$PROJECT_DIR$/templates/base.html.twig" />
         <option value="$PROJECT_DIR$/src/Entity/Module.php" />
-        <option value="$PROJECT_DIR$/src/Controller/Courses/ModuleController.php" />
-        <option value="$PROJECT_DIR$/templates/part/nav.html.twig" />
-        <option value="$PROJECT_DIR$/templates/part/header.html.twig" />
         <option value="$PROJECT_DIR$/src/Entity/Supportfiles.php" />
-        <option value="$PROJECT_DIR$/src/Controller/Courses/LessonController.php" />
-        <option value="$PROJECT_DIR$/src/Controller/Courses/CoursesController.php" />
         <option value="$PROJECT_DIR$/templates/courses/index.html.twig" />
         <option value="$PROJECT_DIR$/templates/courses/participants.html.twig" />
         <option value="$PROJECT_DIR$/templates/courses/modules.html.twig" />
+        <option value="$PROJECT_DIR$/src/Entity/Section.php" />
         <option value="$PROJECT_DIR$/src/Controller/Courses/SectionController.php" />
         <option value="$PROJECT_DIR$/templates/courses/lessons.html.twig" />
         <option value="$PROJECT_DIR$/templates/courses/lesson.html.twig" />
         <option value="$PROJECT_DIR$/public/assets/js/lesson.js" />
+        <option value="$PROJECT_DIR$/src/Entity/LessonFull.php" />
+        <option value="$PROJECT_DIR$/src/Controller/Courses/LessonController.php" />
+        <option value="$PROJECT_DIR$/src/Controller/Courses/ModuleController.php" />
+        <option value="$PROJECT_DIR$/src/Entity/Lesson.php" />
+        <option value="$PROJECT_DIR$/src/Controller/Courses/CoursesController.php" />
+        <option value="$PROJECT_DIR$/src/Entity/Course.php" />
+        <option value="$PROJECT_DIR$/templates/part/header.html.twig" />
+        <option value="$PROJECT_DIR$/src/Controller/HomeController.php" />
+        <option value="$PROJECT_DIR$/templates/home/index.html.twig" />
+        <option value="$PROJECT_DIR$/templates/part/nav.html.twig" />
       </list>
     </option>
   </component>
@@ -356,9 +407,10 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-807" />
-    <option name="width" value="814" />
-    <option name="height" value="907" />
+    <option name="x" value="-1618" />
+    <option name="y" value="-18" />
+    <option name="width" value="1178" />
+    <option name="height" value="667" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -375,6 +427,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -385,27 +439,6 @@
             <path>
               <item name="adminmycourses" type="b2602c69:ProjectViewProjectNode" />
               <item name="adminmycourses" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="config" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="adminmycourses" type="b2602c69:ProjectViewProjectNode" />
-              <item name="adminmycourses" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="migrations" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="adminmycourses" type="b2602c69:ProjectViewProjectNode" />
-              <item name="adminmycourses" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="adminmycourses" type="b2602c69:ProjectViewProjectNode" />
-              <item name="adminmycourses" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="uploads" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="adminmycourses" type="b2602c69:ProjectViewProjectNode" />
-              <item name="adminmycourses" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -417,26 +450,7 @@
             <path>
               <item name="adminmycourses" type="b2602c69:ProjectViewProjectNode" />
               <item name="adminmycourses" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Controller" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Courses" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="adminmycourses" type="b2602c69:ProjectViewProjectNode" />
-              <item name="adminmycourses" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="templates" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="adminmycourses" type="b2602c69:ProjectViewProjectNode" />
-              <item name="adminmycourses" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="templates" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="courses" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="adminmycourses" type="b2602c69:ProjectViewProjectNode" />
-              <item name="adminmycourses" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="templates" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="home" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="adminmycourses" type="b2602c69:ProjectViewProjectNode" />
@@ -444,18 +458,10 @@
               <item name="templates" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="part" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
-            <path>
-              <item name="adminmycourses" type="b2602c69:ProjectViewProjectNode" />
-              <item name="adminmycourses" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="templates" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="security" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -466,11 +472,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\laragon\www\adminmycourses\src\Entity" />
+      <recent name="C:\laragon\www\adminmycourses\public\assets\js\plugins" />
       <recent name="C:\laragon\www\adminmycourses\public\assets\js" />
       <recent name="C:\laragon\www\adminmycourses\templates\courses" />
       <recent name="C:\laragon\www\adminmycourses\templates\home" />
-      <recent name="C:\laragon\www\adminmycourses\public\assets\css\plugins" />
-      <recent name="C:\laragon\www\adminmycourses\public\assets\js\plugins" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -501,7 +507,8 @@
       <workItem from="1601890307369" duration="145000" />
       <workItem from="1601890560644" duration="28272000" />
       <workItem from="1602313702838" duration="18331000" />
-      <workItem from="1602562910693" duration="56716000" />
+      <workItem from="1602562910693" duration="75164000" />
+      <workItem from="1602992275140" duration="5409000" />
     </task>
     <task id="LOCAL-00001" summary="Initialisation of the project. Loading entity and integration of authentification">
       <created>1601982895199</created>
@@ -538,22 +545,28 @@
       <option name="project" value="LOCAL" />
       <updated>1602758107741</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Adding a lessons interface. A user can see a video and the support files of the courses. he can yet remove a support files">
+      <created>1602839312734</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1602839312734</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103464000" />
+    <option name="totallyTimeSpent" value="127321000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1608" y="-8" width="1616" height="916" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14974293" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15167095" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13046272" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32948717" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -565,6 +578,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32948717" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -580,7 +594,8 @@
     <MESSAGE value="readme adding description of the apps" />
     <MESSAGE value="Adding admins and categories interfaces&#10;Adding controller for Module, Lesson and Section" />
     <MESSAGE value="Adding module of a course and module lecon of a module&#10;Adding participation module for a specific course" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding module of a course and module lecon of a module&#10;Adding participation module for a specific course" />
+    <MESSAGE value="Adding a lessons interface. A user can see a video and the support files of the courses. he can yet remove a support files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding a lessons interface. A user can see a video and the support files of the courses. he can yet remove a support files" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -589,116 +604,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="das://table:/bb15b821/160e6de6-0854-46c6-9ee5-68e18fd6ff52/mycourses.doctrine_migration_versions">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/packages/security.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="19" column="22" lean-forward="false" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/HomeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="15" column="34" lean-forward="false" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="34" />
-          <folding>
-            <element signature="e#687#1148#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/assets/js/vendor-all.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="4" column="80355" lean-forward="false" selection-start-line="4" selection-start-column="80351" selection-end-line="4" selection-end-column="80355" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/assets/js/plugins/sweetalert.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/CategoryController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="77" column="56" lean-forward="false" selection-start-line="77" selection-start-column="56" selection-end-line="77" selection-end-column="56" />
-          <folding>
-            <element signature="e#795#2208#0#PHP" expanded="false" />
-            <element signature="e#2550#2656#1#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/assets/css/plugins/sweetalert.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/home/category.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="599">
-          <caret line="77" column="40" lean-forward="false" selection-start-line="77" selection-start-column="40" selection-end-line="77" selection-end-column="40" />
-          <folding>
-            <element signature="e#3364#3371#1#HTML" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/bb15b821/160e6de6-0854-46c6-9ee5-68e18fd6ff52/mycourses.category">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Subcription.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="74" column="5" lean-forward="false" selection-start-line="74" selection-start-column="5" selection-end-line="74" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="61" column="5" lean-forward="false" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/bb15b821/160e6de6-0854-46c6-9ee5-68e18fd6ff52/mycourses.admin">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-          <column-attributes>
-            <column name="roles" languageId="JSON" />
-          </column-attributes>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/home/admin.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="205">
           <caret line="26" column="35" lean-forward="false" selection-start-line="26" selection-start-column="35" selection-end-line="26" selection-end-column="35" />
-          <folding>
-            <element signature="e#3520#3527#1#HTML" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -706,7 +615,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="40" column="42" lean-forward="false" selection-start-line="40" selection-start-column="42" selection-end-line="40" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -714,18 +622,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="211">
           <caret line="14" column="50" lean-forward="false" selection-start-line="14" selection-start-column="50" selection-end-line="14" selection-end-column="50" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/packages/params.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="78" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="78" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/config/packages/params.yml" />
     <entry file="das://table:/bb15b821/160e6de6-0854-46c6-9ee5-68e18fd6ff52/mycourses.course">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -737,7 +637,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-238">
           <caret line="4" column="38" lean-forward="true" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -745,7 +644,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -761,7 +659,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="166">
           <caret line="5" column="35635" lean-forward="false" selection-start-line="5" selection-start-column="35635" selection-end-line="5" selection-end-column="35635" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -769,10 +666,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="17" column="14" lean-forward="false" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
-          <folding>
-            <element signature="e#1632#1773#0" expanded="false" />
-            <element signature="e#2143#3260#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -792,60 +685,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Course.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="73" column="22" lean-forward="true" selection-start-line="73" selection-start-column="22" selection-end-line="73" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Lesson.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="57" column="5" lean-forward="false" selection-start-line="57" selection-start-column="5" selection-end-line="57" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Section.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="50" column="5" lean-forward="false" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
           <caret line="91" column="64" lean-forward="false" selection-start-line="91" selection-start-column="64" selection-end-line="91" selection-end-column="64" />
-          <folding>
-            <marker date="1602744527838" expanded="true" signature="2726:4551" ph="..." />
-            <marker date="1602744527838" expanded="true" signature="2773:2942" ph="..." />
-            <marker date="1602744527838" expanded="true" signature="2982:4488" ph="..." />
-            <marker date="1602744527838" expanded="true" signature="3024:4469" ph="..." />
-            <marker date="1602744527838" expanded="true" signature="3049:3301" ph="..." />
-            <marker date="1602744527838" expanded="true" signature="3114:3275" ph="..." />
-            <marker date="1602744527838" expanded="true" signature="3326:3594" ph="..." />
-            <marker date="1602744527838" expanded="true" signature="3404:3568" ph="..." />
-            <marker date="1602744527838" expanded="true" signature="3619:3859" ph="..." />
-            <marker date="1602744527838" expanded="true" signature="3675:3833" ph="..." />
-            <marker date="1602744527838" expanded="true" signature="3884:4136" ph="..." />
-            <marker date="1602744527838" expanded="true" signature="3949:4110" ph="..." />
-            <marker date="1602744527838" expanded="true" signature="4161:4447" ph="..." />
-            <marker date="1602744527838" expanded="true" signature="4261:4421" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Module.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1631">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding>
-            <element signature="e#30#62#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -864,24 +707,6 @@
           <folding>
             <element signature="e#116#137#0#PHP" expanded="false" />
             <element signature="e#3408#3922#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/part/nav.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="90" lean-forward="false" selection-start-line="6" selection-start-column="90" selection-end-line="6" selection-end-column="90" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/part/header.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="96" column="79" lean-forward="false" selection-start-line="96" selection-start-column="79" selection-end-line="96" selection-end-column="79" />
-          <folding>
-            <element signature="n#div#0;n#div#0;n#li#0;n#ul#1;n#div#1;n#header#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -921,35 +746,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/courses/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="28" column="65" lean-forward="false" selection-start-line="28" selection-start-column="65" selection-end-line="28" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/courses/participants.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="16">
           <caret line="7" column="65" lean-forward="true" selection-start-line="7" selection-start-column="65" selection-end-line="7" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/Courses/CoursesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="41" column="97" lean-forward="true" selection-start-line="41" selection-start-column="97" selection-end-line="41" selection-end-column="97" />
-          <folding>
-            <element signature="e#1903#3578#0#PHP" expanded="false" />
-            <element signature="e#3691#5507#0#PHP" expanded="false" />
-            <element signature="e#5624#6338#0#PHP" expanded="false" />
-            <element signature="e#6419#6893#0#PHP" expanded="false" />
-            <element signature="e#6974#7440#0#PHP" expanded="false" />
-            <element signature="e#7446#7545#0#PHP" expanded="false" />
-            <element signature="e#7551#7624#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -957,17 +757,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="127">
           <caret line="12" column="22" lean-forward="false" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/Courses/ModuleController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="21" column="64" lean-forward="false" selection-start-line="21" selection-start-column="64" selection-end-line="21" selection-end-column="64" />
-          <folding>
-            <element signature="e#3490#3596#1#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -975,17 +764,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
           <caret line="43" column="112" lean-forward="false" selection-start-line="43" selection-start-column="112" selection-end-line="43" selection-end-column="112" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/courses/lessons.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="599">
-          <caret line="89" column="44" lean-forward="false" selection-start-line="89" selection-start-column="44" selection-end-line="89" selection-end-column="44" />
-          <folding>
-            <element signature="e#3919#3926#1#HTML" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1004,45 +782,69 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/Courses/SectionController.php">
+    <entry file="file://$PROJECT_DIR$/migrations/Version20201017052923.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-102">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1602912564497" expanded="true" signature="503:571" ph="ALTER TABLE section... " />
+            <marker date="1602912564497" expanded="true" signature="742:855" ph="ALTER TABLE section... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/migrations/Version20201017053028.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="27" column="63" lean-forward="false" selection-start-line="27" selection-start-column="63" selection-end-line="27" selection-end-column="63" />
+          <caret line="16" column="18" lean-forward="false" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
           <folding>
-            <element signature="e#1226#2288#0#PHP" expanded="false" />
-            <element signature="e#2436#3556#0#PHP" expanded="false" />
-            <element signature="e#3710#4342#0#PHP" expanded="false" />
-            <element signature="e#4424#4898#0#PHP" expanded="false" />
-            <element signature="e#4905#5004#0#PHP" expanded="false" />
-            <element signature="e#5010#5083#0#PHP" expanded="false" />
+            <marker date="1602912628478" expanded="true" signature="503:567" ph="ALTER TABLE section... " />
+            <marker date="1602912628478" expanded="true" signature="738:851" ph="ALTER TABLE section... " />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/Courses/LessonController.php">
+    <entry file="file://$PROJECT_DIR$/src/Entity/Section.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="151" column="28" lean-forward="false" selection-start-line="151" selection-start-column="28" selection-end-line="151" selection-end-column="28" />
-          <folding>
-            <element signature="e#1102#2842#0#PHP" expanded="false" />
-            <element signature="e#4240#5003#0#PHP" expanded="false" />
-            <element signature="e#5170#5819#0#PHP" expanded="false" />
-            <element signature="e#5825#6100#0#PHP" expanded="false" />
-            <element signature="e#6479#6945#0#PHP" expanded="false" />
-            <element signature="e#7449#7522#0#PHP" expanded="false" />
-          </folding>
+        <state relative-caret-position="187">
+          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/courses/lesson.html.twig">
+    <entry file="file://$PROJECT_DIR$/public/assets/js/plugins/ckeditor.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="80" column="54" lean-forward="false" selection-start-line="80" selection-start-column="54" selection-end-line="80" selection-end-column="54" />
-          <folding>
-            <element signature="e#1124#1143#0#HTML" expanded="true" />
-            <element signature="e#3669#3691#0#HTML" expanded="true" />
-            <element signature="e#5808#5855#0#HTML" expanded="true" />
-          </folding>
+        <state relative-caret-position="17">
+          <caret line="4" column="3425" lean-forward="false" selection-start-line="4" selection-start-column="3425" selection-end-line="4" selection-end-column="3425" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/sample/css/sample.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2193">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/js/plugins/ckeditor5-build-decoupled-document/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="31" column="5" lean-forward="false" selection-start-line="31" selection-start-column="1" selection-end-line="31" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/bb15b821/160e6de6-0854-46c6-9ee5-68e18fd6ff52/mycourses.section">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/courses/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="28" column="65" lean-forward="false" selection-start-line="28" selection-start-column="65" selection-end-line="28" selection-end-column="65" />
         </state>
       </provider>
     </entry>
@@ -1053,10 +855,183 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/courses/lesson.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="395">
+          <caret line="73" column="94" lean-forward="false" selection-start-line="73" selection-start-column="85" selection-end-line="73" selection-end-column="94" />
+          <folding>
+            <element signature="e#1788#1807#0#HTML" expanded="false" />
+            <element signature="e#3849#3883#0#HTML" expanded="false" />
+            <element signature="e#3937#3958#0#HTML" expanded="false" />
+            <element signature="e#4963#4970#1#HTML" expanded="false" />
+            <element signature="e#5921#5942#0#HTML" expanded="false" />
+            <element signature="e#6511#6533#0#HTML" expanded="false" />
+            <element signature="e#7232#7239#1#HTML" expanded="false" />
+            <element signature="e#9347#9394#0#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/assets/js/lesson.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="66" column="14" lean-forward="true" selection-start-line="66" selection-start-column="14" selection-end-line="66" selection-end-column="14" />
+        <state relative-caret-position="284">
+          <caret line="76" column="34" lean-forward="false" selection-start-line="76" selection-start-column="34" selection-end-line="76" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/ModuleFull.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="53" column="20" lean-forward="true" selection-start-line="53" selection-start-column="20" selection-end-line="53" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../laclasse/src/Entity/Etudiant.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="4" column="4" lean-forward="false" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
+          <folding>
+            <element signature="e#30#78#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/LessonFull.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="17" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Module.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="50" column="46" lean-forward="false" selection-start-line="50" selection-start-column="46" selection-end-line="50" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Course.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="235" column="0" lean-forward="true" selection-start-line="235" selection-start-column="0" selection-end-line="235" selection-end-column="0" />
+          <folding>
+            <element signature="e#30#62#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/Courses/LessonController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="133" column="0" lean-forward="false" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
+          <folding>
+            <element signature="e#124#150#0#PHP" expanded="false" />
+            <element signature="e#1153#2893#0#PHP" expanded="false" />
+            <element signature="e#5471#6120#0#PHP" expanded="false" />
+            <element signature="e#7835#8301#0#PHP" expanded="false" />
+            <element signature="e#8805#8878#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/Courses/ModuleController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="114" column="28" lean-forward="false" selection-start-line="114" selection-start-column="28" selection-end-line="114" selection-end-column="28" />
+          <folding>
+            <element signature="e#3530#3636#1#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/Courses/CoursesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="214" column="54" lean-forward="false" selection-start-line="214" selection-start-column="54" selection-end-line="214" selection-end-column="54" />
+          <folding>
+            <element signature="e#1903#3578#0#PHP" expanded="false" />
+            <element signature="e#3691#5507#0#PHP" expanded="false" />
+            <element signature="e#6463#6937#0#PHP" expanded="false" />
+            <element signature="e#7018#7484#0#PHP" expanded="false" />
+            <element signature="e#7620#7693#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Lesson.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="65" selection-end-column="27" />
+          <folding>
+            <element signature="e#30#62#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/courses/lessons.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="67">
+          <caret line="72" column="69" lean-forward="false" selection-start-line="72" selection-start-column="69" selection-end-line="72" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/Courses/SectionController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="73" column="51" lean-forward="false" selection-start-line="73" selection-start-column="51" selection-end-line="73" selection-end-column="51" />
+          <folding>
+            <element signature="e#1389#2451#0#PHP" expanded="false" />
+            <element signature="e#3874#4506#0#PHP" expanded="false" />
+            <element signature="e#4588#5062#0#PHP" expanded="false" />
+            <element signature="e#5199#5272#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/part/header.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="37" lean-forward="false" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/HomeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="29" column="13" lean-forward="false" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/home/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="50" lean-forward="false" selection-start-line="26" selection-start-column="50" selection-end-line="26" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/part/nav.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="21" lean-forward="false" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
           <folding />
         </state>
       </provider>

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 
 /**
  * Lesson
@@ -51,6 +52,18 @@ class Lesson
      * })
      */
     private $module;
+
+    /**
+     * @var PersistentCollection
+     * @ORM\OneToMany(targetEntity="Section", mappedBy="lesson", cascade={"persist", "remove"})
+     */
+    private  $sections;
+
+    /**
+     * @var PersistentCollection
+     * @ORM\OneToMany(targetEntity="Supportfiles", mappedBy="lesson", cascade={"persist", "remove"})
+     */
+    private  $supportFiles;
 
     public function __construct()
     {
@@ -110,5 +123,36 @@ class Lesson
         return $this;
     }
 
+    /**
+     * @return PersistentCollection
+     */
+    public function getSections(): PersistentCollection
+    {
+        return $this->sections;
+    }
+
+    /**
+     * @param PersistentCollection $sections
+     */
+    public function setSections(PersistentCollection $sections): void
+    {
+        $this->sections = $sections;
+    }
+
+    /**
+     * @return PersistentCollection
+     */
+    public function getSupportFiles(): PersistentCollection
+    {
+        return $this->supportFiles;
+    }
+
+    /**
+     * @param PersistentCollection $supportFiles
+     */
+    public function setSupportFiles(PersistentCollection $supportFiles): void
+    {
+        $this->supportFiles = $supportFiles;
+    }
 
 }
