@@ -142,4 +142,8 @@ class Admin implements UserInterface
     {
         return (string) $this->email;
     }
+	
+	public function __toString() {
+		return $this->email;
+	}
 }

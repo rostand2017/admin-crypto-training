@@ -42,12 +42,6 @@ class User
      */
     private $password;
 
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="photo", type="string", length=254, nullable=true)
-     */
-    private $photo;
 
     /**
      * @var \DateTime|null
@@ -102,17 +96,6 @@ class User
         return $this;
     }
 
-    public function getPhoto(): ?string
-    {
-        return $this->photo;
-    }
-
-    public function setPhoto(?string $photo): self
-    {
-        $this->photo = $photo;
-
-        return $this;
-    }
 
     public function getCreatedat(): ?\DateTimeInterface
     {
@@ -126,5 +109,7 @@ class User
         return $this;
     }
 
-
+    public function __toString() {
+        return $this->email;
+    }
 }

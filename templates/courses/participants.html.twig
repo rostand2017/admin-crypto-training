@@ -30,7 +30,7 @@
                                     <tr class="{% if loop.index%2 == 0 %}table-warning{% endif %}">
                                         <td>{{ loop.index }}</td>
                                         <td>{{ subcription.user.name }}</td>
-                                        <td>{{ subcription.user.emal }}</td>
+                                        <td>{{ subcription.user.email }}</td>
                                         <td>{{ subcription.createdAt | date('d M Y') }}</td>
                                     </tr>
                                 {% else %}
