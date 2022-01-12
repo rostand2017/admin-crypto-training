@@ -3,9 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Admin;
-use App\Entity\Course;
-use App\Entity\Lesson;
-use App\Entity\Subcription;
+use App\Entity\Courses;
+use App\Entity\Inscription;
 use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,9 +20,9 @@ class HomeController extends AbstractController
      */
     public function index(): Response
     {
-        $suscriptions = $this->getDoctrine()->getRepository(Subcription::class)->findAll();
+        $suscriptions = $this->getDoctrine()->getRepository(Inscription::class)->findAll();
         $users = $this->getDoctrine()->getRepository(User::class)->findAll();
-        $courses = $this->getDoctrine()->getRepository(Course::class)->findAll();
+        $courses = $this->getDoctrine()->getRepository(Courses::class)->findAll();
         return $this->render('home/index.html.twig', [
             'suscriptions' => count($suscriptions),
             'users' => count($users),

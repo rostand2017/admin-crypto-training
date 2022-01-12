@@ -9,9 +9,10 @@
 namespace App\Controller\Courses;
 
 
-use App\Entity\Category;
-use App\Entity\Course;
-use App\Entity\Subcription;
+use App\Entity\Courses;
+use App\Entity\Inscription;
+use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ObjectManager;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -26,22 +27,21 @@ class CoursesController extends  AbstractController
      */
     public function indexAction(Request $request, PaginatorInterface $paginator){
         $em = $this->getDoctrine()->getManager();
-        $courses = $em->getRepository(Course::class)->findBy([], ['createdat'=>'desc']);
-        $categories = $em->getRepository(Category::class)->findAll();
+        $courses = $em->getRepository(Courses::class)->findBy([], ['createdat'=>'desc']);
         $pagination = $paginator->paginate(
             $courses,
             $request->query->getInt('page', 1),
             10
         );
-        return $this->render('courses/index.html.twig', array("pagination" =>$pagination, "categories"=>$categories));
+        return $this->render('courses/index.html.twig', array("pagination" =>$pagination));
     }
 
     /**
      * @Route("/courses/{course}/participants", name="users_courses", requirements={"course"="\d+"})
      */
-    public function usersAction(Request $request, PaginatorInterface $paginator, Course $course){
+    public function usersAction(Request $request, PaginatorInterface $paginator, Courses $course){
         $em = $this->getDoctrine()->getManager();
-        $subscriptions = $em->getRepository(Subcription::class)->findBy(["course"=>$course], ['createdat'=>'desc']);
+        $subscriptions = $em->getRepository(Inscription::class)->findBy(["course"=>$course], ['createdat'=>'desc']);
         $pagination = $paginator->paginate(
             $subscriptions,
             $request->query->getInt('page', 1),
@@ -56,31 +56,15 @@ class CoursesController extends  AbstractController
     public function newCoursAction(Request $request){
 
         $em = $this->getDoctrine()->getManager();
-        $post = $request->request;
+        $course = new Courses();
+        $course = $this->validateForm($request, $course);
+        if(get_class($course) != Courses::class)
+            return $course;
 
-        $title = $post->get("title");
-        $description = $post->get("description");
-        $price = $post->get("price");
-        $category = $post->get("category");
-
-        $category = $em->getRepository(Category::class)->find($category);
-        if(!$category)
-            return new JsonResponse(['status'=>1, 'mes'=>'Selectionnez une catégorie']);
-
-        if($title == '' || $description == '' || $price < 0){
-            return new JsonResponse(array(
-                "status"=>1,
-                "mes"=>"Renseignez tous les différents champs"
-            ));
-        }
-
-        if(!$request->files->get('photo') || !$request->files->get('video'))
-            return new JsonResponse(['status'=>1, 'mes'=>'Ajoutez la vidéo(ou l`\'image) d\'introduction du cours']);
-
-
+        if(!$request->files->get('photo'))
+            return new JsonResponse(['status'=>1, 'mes'=>'Ajoutez l`\'image d\'introduction de la formation']);
         try{
             $photo = $this->uploadImage($request->files->get('photo'));
-            $video= $this->uploadVideo($request->files->get('video'));
         }catch (\Exception $e){
             return new JsonResponse(array(
                 "status"=>1,
@@ -88,55 +72,30 @@ class CoursesController extends  AbstractController
             ));
         }
 
-        $course = new Course();
-        $course->setTitle($title);
-        $course->setPrice($price);
-        $course->setDescription($description);
-        $course->setPhoto($photo)
-            ->setVideo($video)
-            ->setCategory($category);
+        $course->setImage($photo);
         $em->persist($course);
         $em->flush();
         return new JsonResponse(array(
             "status"=>0,
-            "mes"=>"Cours ajouté avec succès"
+            "mes"=>"Formation ajoutée avec succès"
         ));
     }
 
     /**
      * @Route("/courses/{course}/edit", name="edit_course", requirements={"course"="\d+"})
      */
-    public function editCoursAction(Request $request, Course $course){
+    public function editCoursAction(Request $request, Courses $course){
 
         $em = $this->getDoctrine()->getManager();
-        $post = $request->request;
-
-        $title = $post->get("title");
-        $description = $post->get("description");
-        $price = $post->get("price");
-        $category = $post->get("category");
-
-        $category = $em->getRepository(Category::class)->find($category);
-        if(!$category)
-            return new JsonResponse(['status'=>1, 'mes'=>'Selectionnez une catégorie']);
-        if($title == '' || $description == '' || $price < 0){
-            return new JsonResponse(array(
-                "status"=>1,
-                "mes"=>"Renseignez tous les différents champs"
-            ));
-        }
+        $course = $this->validateForm($request, $course);
+        if(get_class($course) != Courses::class)
+            return $course;
 
         try{
             if($request->files->get('photo')){
                 $photo = $this->uploadImage($request->files->get('photo'));
                 $this->removeFile($this->getParameter("images_courses_directory").$course->getPhoto());
-                $course->setPhoto($photo);
-            }
-
-            if($request->files->get('video')){
-                $video = $this->uploadVideo($request->files->get('video'));
-                $this->removeFile($this->getParameter("videos_courses_directory").$course->getVideo());
-                $course->setVideo($video);
+                $course->setImage($photo);
             }
         }catch (\Exception $e){
             return new JsonResponse(array(
@@ -145,40 +104,116 @@ class CoursesController extends  AbstractController
             ));
         }
 
-        $course->setTitle($title)
-            ->setPrice($price)
-            ->setDescription($description)
-            ->setCategory($category);
         $em->persist($course);
         $em->flush();
         return new JsonResponse(array(
             "status"=>0,
-            "mes"=>"Cours modifié avec succès"
+            "mes"=>"Formation éditée avec succès"
         ));
     }
 
     /**
      * @Route("/courses/{course}/delete", name="delete_course", requirements={"course"="\d+"})
      */
-    public function deleteCoursAction(Course $course){
+    public function deleteCoursAction(Courses $course){
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($course);
         try{
             $em->flush();
-            $this->removeFile($this->getParameter("videos_courses_directory").$course->getVideo());
             $this->removeFile($this->getParameter("images_courses_directory").$course->getPhoto());
             return new JsonResponse(array(
                 "status"=>0,
-                "mes"=>"Cours supprimé avec succès"
+                "mes"=>"Formation supprimée avec succès"
             ));
         }catch (\Exception $e){
             return new JsonResponse(array(
                 "status"=>1,
-                "mes"=>"Une erreur est survenue, reessayé plutard.",
+                "mes"=>"Une erreur est survenue, reessayez plutard.",
                 "error"=>$e->getMessage(),
             ));
         }
+    }
+
+    /**
+     * @Route("/courses/{course}/publish", name="publish_course", requirements={"course"="\d+"})
+     */
+    public function publishAction(Request $request, Courses $course){
+        $em = $this->getDoctrine()->getManager();
+        $publish = $request->request->get('publish');
+        if($publish == null)
+            return new JsonResponse(array("status"=>1, "mes"=>"Une erreur est survenue"));
+        $course->setIsPublished($publish);
+        $em->persist($course);
+        try{
+            $em->flush();
+            return new JsonResponse(array(
+                "status"=>0,
+                "mes"=>$course->isPublished()? "Formation publiée" : "Formation désactivée avec succès"
+            ));
+        }catch (\Exception $e){
+            return new JsonResponse(array(
+                "status"=>1,
+                "mes"=>"Une erreur est survenue, reessayez plutard.",
+                "error"=>$e->getMessage(),
+            ));
+        }
+    }
+
+    private function validateForm(Request $request, Courses $course){
+        $post = $request->request;
+        $title = $post->get("title");
+        $price = $post->get("price");
+        $oldPrice = $post->get("oldPrice", 0);
+        $overview = $post->get("overview", 0);
+        $duration = $post->get("duration", "");
+        $isPublished = $post->get("isPublished", false);
+        $metaDescription = $post->get("metaDescription");
+        $metaUrl = $post->get("metaUrl");
+
+        $metaUrl = $this->titleToUrl($metaUrl);
+
+        if($title == "")
+            return new JsonResponse(array("status"=>1, "mes"=>"Renseignez le titre de la formation"));
+        if( $overview == "")
+            return new JsonResponse(array("status"=>1, "mes"=>"Ajoutez une description à la formation"));
+        if( $price == 0)
+            return new JsonResponse(array("status"=>1, "mes"=>"Renseignez le prix de la formation"));
+        if( $oldPrice != 0 && $oldPrice > 0 && $oldPrice < $price)
+            return new JsonResponse(array("status"=>1, "mes"=>"L'ancien prix doit être supérieur au nouveau"));
+        if( $duration == "")
+            return new JsonResponse(array("status"=>1, "mes"=>"Renseignez la durée de la formation (en Heure)"));
+        if( $metaDescription == "")
+            return new JsonResponse(array("status"=>1, "mes"=>"Renseignez une meta description (très important pour le SEO)"));
+        return $this->saveCourses(
+            $course,$title, $price, $oldPrice,
+            $overview, $duration, $isPublished,
+            $metaDescription, $metaUrl
+        );
+    }
+
+    private function saveCourses(Courses $course,$title, $price, $oldPrice, $overview,
+                                 $duration, $isPublished, $metaDescription, $metaUrl): Courses{
+
+        $course->setTitle($title);
+        $course->setPrice($price);
+        $course->setOldprice($oldPrice);
+        $course->setOverview($overview);
+        $course->setDuration($duration);
+        $course->setIsPublished($isPublished);
+        $course->setMetaDescription($metaDescription);
+        $course->setMetaUrl($metaUrl);
+        $course->setNblesson(0);
+        $course->setNbreview(0);
+        return $course;
+    }
+
+    private function titleToUrl($title){
+        $title = trim($title);
+        $replaces = ['&', '_', ' ', "\\", "/"];
+        $title = str_replace($replaces,"-", $title);
+        $replaces = [":", "?", "#", "[", "]", "@", "!", "$", "&", "'", "(", ")", "*", "+", ",", ";", "=", '"'];
+        return str_replace($replaces,"-", $title);
     }
 
     /**

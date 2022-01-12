@@ -9,6 +9,7 @@
 namespace App\Controller\Courses;
 
 
+use App\Entity\Courses;
 use App\Entity\LessonFull;
 use App\Entity\Module;
 use App\Entity\Lesson;
@@ -40,31 +41,15 @@ class LessonController extends AbstractController
     public function newLessonAction(Request $request, Module $module){
 
         $em = $this->getDoctrine()->getManager();
-        $post = $request->request;
-        $title = $post->get("title");
-
-        if($title == ''){
-            return new JsonResponse(array(
-                "status"=>1,
-                "mes"=>"Renseignez le titre de la leçon"
-            ));
-        }
-
-
         $lesson = new Lesson();
-        $lesson->setTitle($title)
-            ->setModule($module);
-
-        if($request->files->get('video')){
-            try{
-                $video= $this->uploadVideo($request->files->get('video'));
-                $lesson->setVideo($video);
-            }catch (\Exception $e){
-                return new JsonResponse(array("status"=>1, "mes"=>"Une erreur est survenue lors du chargement de la vidéo"));
-            }
-        }
-
+        $lesson = $this->validateLessonForm($request, $lesson);
+        if(get_class($lesson)!= Lesson::class)
+            return $lesson;
+        $lesson->setModule($module);
+        $course = $module->getCourses();
+        $course->setNblesson($course->getNblesson()+1);
         $em->persist($lesson);
+        $em->persist($course);
         $em->flush();
 
         if($request->files->get('files')){
@@ -95,27 +80,10 @@ class LessonController extends AbstractController
     public function editLessonAction(Request $request, Module $module, Lesson $lesson){
 
         $em = $this->getDoctrine()->getManager();
-        $post = $request->request;
-        $title = $post->get("title");
-
-        if($title == ''){
-            return new JsonResponse(array(
-                "status"=>1,
-                "mes"=>"Renseignez le titre de la leçon"
-            ));
-        }
-
-        $lesson->setTitle($title);
-        if($request->files->get('video')){
-            try{
-                $this->removeFile($this->getParameter("videos_courses_directory").$lesson->getVideo());
-                $video= $this->uploadVideo($request->files->get('video'));
-                $lesson->setVideo($video);
-            }catch (\Exception $e){
-                return new JsonResponse(array("status"=>1, "mes"=>"Une erreur est survenue lors du chargement de la vidéo", "error"=>$e->getMessage()));
-            }
-        }
-
+        $lesson = $this->validateLessonForm($request, $lesson);
+        if(get_class($lesson)!= Lesson::class)
+            return $lesson;
+        $lesson->setModule($module);
         $em->persist($lesson);
         $em->flush();
         return new JsonResponse(array(
@@ -131,12 +99,14 @@ class LessonController extends AbstractController
     public function deleteLessonAction(Module $module, Lesson $lesson){
 
         $em = $this->getDoctrine()->getManager();
+        $course = $module->getCourses();
+        $course->setNblesson($course->getNblesson()-1);
         $em->remove($lesson);
+        $em->persist($course);
         $files = $em->getRepository(Supportfiles::class)->findBy(['lesson'=>$lesson]);
         $this->deleteAllSupportFiles($files, $em);
         try{
             $em->flush();
-            $this->removeFile($this->getParameter("images_courses_directory").$lesson->getVideo());
             return new JsonResponse(array(
                 "status"=>0,
                 "mes"=>"Leçon supprimée avec succès"
@@ -218,6 +188,36 @@ class LessonController extends AbstractController
         }
     }
 
+
+    private function validateLessonForm(Request $request, Lesson $lesson){
+        $post = $request->request;
+        $title = $post->get("title");
+        $smallDescription = $post->get("smallDescription");
+        $description = $post->get("description");
+        $duration = $post->get("duration");
+        $video = $post->get("video");
+
+        if($title == "" || $title ==  null)
+            return new JsonResponse(array("status"=>1, "mes"=>"Renseignez le titre de la leçon"));
+        if($smallDescription == "" || $smallDescription ==  null)
+            return new JsonResponse(array("status"=>1, "mes"=>"Renseignez l'aperçu de la leçon"));
+        if($description == "" || $description ==  null)
+            return new JsonResponse(array("status"=>1, "mes"=>"Renseignez le contenu de la leçon"));
+        if( $duration == "" || $duration == null)
+            return new JsonResponse(array("status"=>1, "mes"=>"Renseignez la durée de la leçon"));
+        if( $video == "" || $video == null)
+            return new JsonResponse(array("status"=>1, "mes"=>"Ajoutez la vidéo de la leçon"));
+        return $this->saveLesson($lesson, $title, $smallDescription, $description, $duration, $video);
+    }
+
+    private function saveLesson(Lesson $lesson, $title, $smallDescription, $description, $duration, $video): Lesson{
+        $lesson->setTitle($title);
+        $lesson->setSmalldescription($smallDescription);
+        $lesson->setDescription($description);
+        $lesson->setDuration($duration);
+        $lesson->setVideo($video);
+        return $lesson;
+    }
 
     /**
      * @param UploadedFile $file
