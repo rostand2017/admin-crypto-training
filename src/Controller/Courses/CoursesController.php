@@ -94,7 +94,7 @@ class CoursesController extends  AbstractController
         try{
             if($request->files->get('photo')){
                 $photo = $this->uploadImage($request->files->get('photo'));
-                $this->removeFile($this->getParameter("images_courses_directory").$course->getPhoto());
+                $this->removeFile($this->getParameter("images_courses_directory").$course->getImage());
                 $course->setImage($photo);
             }
         }catch (\Exception $e){
@@ -121,7 +121,7 @@ class CoursesController extends  AbstractController
         $em->remove($course);
         try{
             $em->flush();
-            $this->removeFile($this->getParameter("images_courses_directory").$course->getPhoto());
+            $this->removeFile($this->getParameter("images_courses_directory").$course->getImage());
             return new JsonResponse(array(
                 "status"=>0,
                 "mes"=>"Formation supprimée avec succès"
@@ -167,6 +167,7 @@ class CoursesController extends  AbstractController
         $oldPrice = $post->get("oldPrice", 0);
         $overview = $post->get("overview", 0);
         $duration = $post->get("duration", "");
+        $video = $post->get("video", "");
         $isPublished = $post->get("isPublished", false);
         $metaDescription = $post->get("metaDescription");
         $metaUrl = $post->get("metaUrl");
@@ -183,28 +184,35 @@ class CoursesController extends  AbstractController
             return new JsonResponse(array("status"=>1, "mes"=>"L'ancien prix doit être supérieur au nouveau"));
         if( $duration == "")
             return new JsonResponse(array("status"=>1, "mes"=>"Renseignez la durée de la formation (en Heure)"));
+        if( $video == "")
+            return new JsonResponse(array("status"=>1, "mes"=>"Renseignez la vidéo d'introduction"));
         if( $metaDescription == "")
             return new JsonResponse(array("status"=>1, "mes"=>"Renseignez une meta description (très important pour le SEO)"));
+        if($oldPrice == "")
+            $oldPrice = null;
         return $this->saveCourses(
             $course,$title, $price, $oldPrice,
-            $overview, $duration, $isPublished,
-            $metaDescription, $metaUrl
+            $overview, $duration, $video,
+            $isPublished, $metaDescription, $metaUrl
         );
     }
 
     private function saveCourses(Courses $course,$title, $price, $oldPrice, $overview,
-                                 $duration, $isPublished, $metaDescription, $metaUrl): Courses{
+                                 $duration, $video, $isPublished, $metaDescription, $metaUrl): Courses{
 
         $course->setTitle($title);
         $course->setPrice($price);
         $course->setOldprice($oldPrice);
         $course->setOverview($overview);
         $course->setDuration($duration);
+        $course->setVideo($video);
         $course->setIsPublished($isPublished);
         $course->setMetaDescription($metaDescription);
         $course->setMetaUrl($metaUrl);
-        $course->setNblesson(0);
-        $course->setNbreview(0);
+        if($course->getId() > 0) {
+            $course->setNblesson(0);
+            $course->setNbreview(0);
+        }
         return $course;
     }
 

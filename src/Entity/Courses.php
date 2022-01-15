@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Courses
  *
  * @ORM\Table(name="courses")
- * @ORM\Entity(repositoryClass="App\Repository\CoursesRepository")
+ * @ORM\Entity
  */
 class Courses
 {
@@ -121,7 +121,7 @@ class Courses
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }

@@ -6,7 +6,7 @@
  * Time: 10:05
  */
 
-namespace App\Controller\Coursess;
+namespace App\Controller\Courses;
 
 
 use App\Entity\Courses;

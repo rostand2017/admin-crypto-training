@@ -10,10 +10,8 @@ namespace App\Controller\Courses;
 
 
 use App\Entity\Courses;
-use App\Entity\LessonFull;
 use App\Entity\Module;
 use App\Entity\Lesson;
-use App\Entity\Section;
 use App\Entity\Supportfiles;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
