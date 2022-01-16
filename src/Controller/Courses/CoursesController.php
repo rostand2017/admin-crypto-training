@@ -143,6 +143,7 @@ class CoursesController extends  AbstractController
         $publish = $request->request->get('publish');
         if($publish == null)
             return new JsonResponse(array("status"=>1, "mes"=>"Une erreur est survenue"));
+
         $course->setIsPublished($publish);
         $em->persist($course);
         try{

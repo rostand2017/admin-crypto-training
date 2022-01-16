@@ -16,6 +16,13 @@ $(document).ready(function() {
             })
             .catch(function (reason) { console.error(reason); });
     }
+
+    function previewVideoIframe(video, videoPreview){
+        if(video.val().toLowerCase().split('iframe').length > 1)
+            videoPreview.html(video.val());
+        else
+            videoPreview.html('');
+    }
     editCkeditor();
 
     $('#form').on('submit', function (e) {
@@ -68,14 +75,14 @@ $(document).ready(function() {
 
     $('.editModal').on('click', function () {
         $('#title').val($(this).data('title'));
-        editor.setData($(this).data('video'));
+        editor.setData($(this).data('overview'));
         $('#overview').val($(this).data('overview'));
         $('#price').val($(this).data('price'));
         $('#oldPrice').val($(this).data('oldprice'));
         $('#duration').val($(this).data('duration'));
         $('#video').val($(this).data('video'));
         $('#metaDescription').val($(this).data('metadescription'));
-        console.log($(this).data('ispublished'));
+        previewVideoIframe($('#video'), $('#videoPreview'));
         if($(this).data('ispublished'))
             $("#isPublished").attr("checked", "checked");
         else
@@ -115,13 +122,40 @@ $(document).ready(function() {
             });
     });
 
-    $("#video").on('change', function (e) {
-        if($(this).val().toLowerCase().split('iframe').length > 1)
-            $('#videoPreview').html($(this).val());
+    $("#video").on('keyup', function (e) {
+        previewVideoIframe($(this), $('#videoPreview'));
     });
 
     $('.videoLink').on('click', function (e) {
         e.preventDefault();
-        $("#videoPreview").html($(this).attr('videoframe'));
+        $("#videoContainer").html($(this).attr('videoframe'));
+    });
+
+    var MAX_CHARACTER = 200;
+    $(".rx-training-item .rx-overview").each(function (i, elt) {
+        $(elt).html($($(elt).data('overview')).text().slice(0, MAX_CHARACTER) + "...");
+    });
+
+    $('.publishCourse input').on('change', function (e) {
+        var publishCheckBox = $(this);
+        $.ajax({
+            type: 'post',
+            url: publishCheckBox.closest(".publishCourse").attr('action'),
+            data: "publish=" + (publishCheckBox.is(":checked")? 1 : 0),
+            datatype: 'json',
+            beforeSend: function () {
+            },
+            success: function (json) {
+                if (json.status == 0){
+                    alert(json.mes);
+                }else{
+                    alert(json.mes);
+                    publishCheckBox.prop("checked", !publishCheckBox.prop("checked"));
+                }
+            },
+            complete: function () {
+            },
+            error: function(jqXHR, textStatus, errorThrown){}
+        });
     });
 });

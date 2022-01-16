@@ -17,7 +17,7 @@
                 <div class="card-body table-border-style">
                     <div class="card-columns">
                         {% for course in pagination %}
-                            <div class="card">
+                            <div class="card rx-training-item">
                                 <div class="btn-group mb-2 mr-2 float-right">
                                     <button class="btn btn-outline-danger btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                                     <div class="dropdown-menu">
@@ -36,8 +36,17 @@
                                 </a>
                                 <div class="card-body">
                                     <h5 class="card-title">{{ course.title }}</h5>
-                                    <p class="card-text">{{ course.overview | raw }}</p>
+                                    <div>
+                                        <b class="text-danger">{{ course.price }} XAF </b>
+                                        {% if course.oldPrice > course.price %}<b class="text-dark"><s><small> {{ course.oldPrice }} XAF</small></s></b>{% endif %}
+                                    </div>
+                                    <p class="card-text rx-overview" data-overview="{{ course.overview }}"></p>
                                     <a href="{{ path('modules', {course: course.id}) }}" title="Voir les leçons" class="btn  btn-primary">ouvrir</a>
+                                    <form style="display: inline-block" class="float-right publishCourse" method="post"
+                                          action="{{ path('publish_course', {course: course.id}) }}">
+                                        Publié
+                                        <input type="checkbox" name="publish" {% if course.isPublished %}checked{% endif %}>
+                                    </form>
                                 </div>
                                 <div class="card-footer">
                                     <small class="text-muted">Ajouté le {{ course.createdAt | date('d M Y') }}</small>
@@ -55,7 +64,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" data-backdrop="static" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
