@@ -24200,5 +24200,10 @@ div.dtk-focus-alt table.dataTable tbody th.focus {
     padding: 70px 40px;
 }
 
+#editor, #editor2{
+    border: 1px solid #08080852;
+    margin-bottom: 15px;
+    min-height: 150px;
+}
 /* image varient End */
 /**====== Authentication css end ======**/

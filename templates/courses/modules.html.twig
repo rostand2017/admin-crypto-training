@@ -11,10 +11,10 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h5>Modules du cours "{{ course.title }}"</h5>
+                    <h2>{{ course.title }}</h2>
                     <span class="float-right"><a href="#editModal" data-toggle="modal" class="btn btn-sm btn-danger" id="newModal">+ Ajouter</a></span>
-                    <span class="float-right mr-2"><b>{{ totalDuration }}</b></span>
-                    <span class="d-block m-t-5">Ajoutez des modules à ce cours ici.</span>
+                    <span class="float-right mr-2"><b>{{ totalDuration }} Heure{% if totalDuration > 1 %}s{% endif %}</b></span>
+                    <span class="d-block m-t-5">Ajoutez des modules à cette formation ici.</span>
                 </div>
                 <div class="card-body table-border-style">
                     <div class="table-responsive">
@@ -22,26 +22,26 @@
                             {% for module in modules %}
                                 <div class="card mb-0">
                                     <div class="card-header" id="heading_{{ module.id }}">
+                                        <a href="{{ path('lessons', {module: module.id}) }}" title="voir les leçons" class="btn btn-sm btn-primary">
+                                            <i class="fa fa-book-open"></i>
+                                        </a>
                                         <h5 class="mb-0">
                                             <a href="{{ path('lessons', {module: module.id}) }}" data-toggle="collapse" data-target="#collapse_{{ module.id }}" aria-expanded="true" aria-controls="collapseOne">
                                                 {{ module.title }}
                                             </a>
                                         </h5>
                                         <a class="btn btn-sm btn-outline-danger deleteElt float-right ml-2 mb-2" href="#" data-url="{{ path('delete_module', {module: module.id, course: course.id}) }}"><i class="fa fa-trash"></i></a>
-                                        <span class="badge badge-warning float-right">{{ module.duration }} Min</span>
+                                        <a class="btn btn-sm btn-outline-primary editModal float-right" href="#editModal" data-toggle="modal"
+                                           data-title="{{ module.title }}" data-duration="{{ module.duration }}" data-id="{{ module.id }}"
+                                           data-url="{{ path('edit_module', {course: course.id}) }}"><i class="fa fa-edit"></i></a>
+                                        <span class="badge badge-warning float-right mr-2">{{ module.duration }} Min</span>
                                     </div>
                                     <div id="collapse_{{ module.id }}" class="collapse" aria-labelledby="heading_{{ module.id }}" data-parent="#accordionExample">
                                         <div class="card-body">
-                                            <div class="text-center">
-                                                <a class="btn btn-sm btn-outline-primary editModal" href="#editModal" data-toggle="modal"
-                                                   data-title="{{ module.title }}" data-duration="{{ module.duration }}" data-id="{{ module.id }}"
-                                                   data-url="{{ path('edit_module', {course: course.id}) }}">modifier</a>
-                                                <a href="{{ path('lessons', {module: module.id}) }}" class="btn btn-sm btn-primary">Toutes les leçons</a>
-                                            </div>
                                             <table class="table table-hover">
                                                 {% for lesson in module.lessons %}
                                                     <tr>
-                                                        <td><a href="{{ path('sections', {lesson: lesson.id}) }}">{{ lesson.title }}</a></td>
+                                                        <td><a href="#">{{ lesson.title }}</a></td>
                                                     </tr>
                                                 {% endfor %}
                                             </table>
@@ -73,7 +73,7 @@
                             <input type="text" name="title" required class="form-control" id="title" placeholder="Titre du module">
                         </div>
                         <div class="form-group">
-                            <input type="number" name="duration" required class="form-control" id="duration" placeholder="Durée du module (en minute)">
+                            <input type="text" name="duration" required class="form-control" id="duration" placeholder="Durée du module (2H30)">
                         </div>
                     </div>
                     <div class="modal-footer">

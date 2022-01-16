@@ -22,7 +22,7 @@ class ModuleController extends AbstractController
      * @Route("courses/{course}/modules", name="modules", requirements={"course"="\d+"})
      */
     public function indexAction(Courses $course){
-        $modules = $this->getDoctrine()->getRepository(Module::class)->findBy(['course'=>$course], ['createdat'=>'asc']);
+        $modules = $this->getDoctrine()->getRepository(Module::class)->findBy(['courses'=>$course], ['createdat'=>'asc']);
         return $this->render("courses/modules.html.twig", array(
             "modules" => $modules,
             "course" => $course,
@@ -51,7 +51,6 @@ class ModuleController extends AbstractController
     public function editModuleAction(Request $request, Courses $course){
 
         $em = $this->getDoctrine()->getManager();
-        $this->validateModuleForm($request);
         $id = $request->request->get("id", -1);
         if($id > 0 ){
             $module = $em->getRepository(Module::class)->find($id);

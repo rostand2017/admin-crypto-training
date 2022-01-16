@@ -1,4 +1,49 @@
 $(document).ready(function() {
+
+    var editor;
+    var editor2;
+    function editCkeditor() {
+        return  DecoupledEditor
+            .create( document.querySelector( '#editor' ), {
+                placeholder: "Description de l'aperçu de la formation"
+            })
+            .then( function (value) {
+                editor = value;
+                var toolbarContainer = document.querySelector( '#toolbar-container' );
+                toolbarContainer.prepend( value.ui.view.toolbar.element );
+                value.model.document.on( 'change:data', function(){
+                    $("#smallDescription").val(editor.getData());
+                });
+            })
+            .catch(function (reason) { console.error(reason); });
+    }
+    function editCkeditor2() {
+        return  DecoupledEditor
+            .create( document.querySelector( '#editor2' ), {
+                placeholder: "Description de la formation"
+            })
+            .then( function (value) {
+                editor2 = value;
+                var toolbarContainer = document.querySelector( '#toolbar-container2' );
+                toolbarContainer.prepend( value.ui.view.toolbar.element );
+                value.model.document.on( 'change:data', function(){
+                    $("#description").val(editor2.getData());
+                    console.log("Hey"+editor2.getData());
+                });
+            })
+            .catch(function (reason) { console.error(reason); });
+    }
+
+    function previewVideoIframe(video, videoPreview){
+        if(video.val().toLowerCase().split('iframe').length > 1)
+            videoPreview.html(video.val());
+        else
+            videoPreview.html('');
+    }
+
+    editCkeditor();
+    editCkeditor2();
+
     $('#form').on('submit', function (e) {
         e.preventDefault();
         var formdata = (window.FormData) ? new FormData($(this)[0]) : null;
@@ -41,15 +86,22 @@ $(document).ready(function() {
 
     $('#newModal').on('click', function () {
         $('#form').get(0).reset();
+        editor.setData("");
+        editor2.setData("");
         $('#alert').get(0).innerHTML = "";
         $("#form").attr('action', $(this).data('url'));
         $('#filesContainer').show();
     });
 
     $('.editModal').on('click', function () {
+        editor.setData($(this).data("smalldescription"));
+        editor2.setData($(this).data("description"));
         $('#title').val($(this).data('title'));
+        $('#video').val($(this).data('video'));
+        $('#duration').val($(this).data('duration'));
         $("#form").attr('action', $(this).data('url'));
         $('#filesContainer').hide();
+        previewVideoIframe($('#video'), $('#videoPreview'));
     });
 
     $('.deleteElt').on('click', function (e) {
@@ -82,5 +134,9 @@ $(document).ready(function() {
                     });
                 }
             });
+    });
+
+    $("#video").on('keyup', function (e) {
+        previewVideoIframe($(this), $('#videoPreview'));
     });
 });

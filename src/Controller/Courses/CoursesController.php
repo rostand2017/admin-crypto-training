@@ -41,7 +41,7 @@ class CoursesController extends  AbstractController
      */
     public function usersAction(Request $request, PaginatorInterface $paginator, Courses $course){
         $em = $this->getDoctrine()->getManager();
-        $subscriptions = $em->getRepository(Inscription::class)->findBy(["course"=>$course], ['createdat'=>'desc']);
+        $subscriptions = $em->getRepository(Inscription::class)->findBy(["courses"=>$course], ['createdat'=>'desc']);
         $pagination = $paginator->paginate(
             $subscriptions,
             $request->query->getInt('page', 1),

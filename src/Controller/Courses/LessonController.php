@@ -26,10 +26,21 @@ class LessonController extends AbstractController
      * @Route("modules/{module}/lessons", name="lessons", requirements={"module"="\d+"})
      */
     public function indexAction(Module $module){
-        $lessons = $this->getDoctrine()->getRepository(Lesson::class)->findBy(['module'=>$module], ['createdat'=>'asc']);
+        $lessons = $this->getDoctrine()->getRepository(Lesson::class)->findBy(['module'=>$module], ['id'=>'asc']);
         return $this->render("courses/lessons.html.twig", array(
             "lessons" => $lessons,
             "module" => $module
+        ));
+    }
+    /**
+     * @Route("modules/{module}/lessons/{lesson}", name="lesson", requirements={"module"="\d+", "lesson"="\d+"})
+     */
+    public function lessonAction(Module $module, Lesson $lesson){
+        $lessons = $this->getDoctrine()->getRepository(Lesson::class)->findBy(['module'=>$module], ['id'=>'asc']);
+        return $this->render("courses/lesson.html.twig", array(
+            "lessons" => $lessons,
+            "module" => $module,
+            "lesson" => $lesson
         ));
     }
 
