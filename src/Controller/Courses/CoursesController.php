@@ -11,6 +11,7 @@ namespace App\Controller\Courses;
 
 use App\Entity\Courses;
 use App\Entity\Inscription;
+use App\Tools\Thumbnails;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectManager;
 use Knp\Component\Pager\PaginatorInterface;
@@ -232,9 +233,20 @@ class CoursesController extends  AbstractController
     private function uploadImage(UploadedFile $file) {
         $imageAccepted = array("jpg", "png", "jpeg");
         if( in_array(strtolower($file->guessExtension()), $imageAccepted) ){
-            $fileName = $this->getUniqueFileName().".".$file->guessExtension();
+            $fileName = $this->getUniqueFileName($file->guessExtension());
+            $thumbnailsFileName = $this->getUniqueFileName($file->guessExtension());
             $file->move($this->getParameter("images_courses_directory"), $fileName);
-            return $fileName;
+            $result = Thumbnails::createThumbnail(
+                $this->getParameter("images_courses_directory").$thumbnailsFileName,
+                $this->getParameter("images_courses_directory").$fileName,
+                300
+            );
+            if($result == Thumbnails::COMPRESSION_SUCCESS)
+                return $thumbnailsFileName;
+            elseif($result == Thumbnails::COMPRESSION_ERROR)
+                throw new \Exception("Un problème est survenu lors de la compression de l'image", 100);
+            else
+                return $fileName;
         }else{
             throw new \Exception("Format d'image incorrect", 100);
         }
@@ -247,7 +259,7 @@ class CoursesController extends  AbstractController
     private function uploadVideo(UploadedFile $file){
         $imageAccepted = array("mp4", "avi");
         if( in_array(strtolower($file->guessExtension()), $imageAccepted) ){
-            $fileName = $this->getUniqueFileName().".".$file->guessExtension();
+            $fileName = $this->getUniqueFileName($file->guessExtension());
             $file->move($this->getParameter("videos_courses_directory"), $fileName);
             return $fileName;
         }else{
@@ -260,8 +272,8 @@ class CoursesController extends  AbstractController
             unlink($path);
     }
 
-    private function getUniqueFileName(){
-        return md5(uniqid());
+    private function getUniqueFileName($extension=null){
+        return md5(uniqid()).($extension==null? "" : ".".$extension);
     }
 
 }
