@@ -26,6 +26,7 @@
                                            data-id="{{ course.id }}" data-oldprice="{{ course.oldPrice }}" data-price="{{ course.price }}"
                                            data-duration="{{ course.duration }}" data-ispublished="{{ course.isPublished }}"
                                            data-metadescription="{{ course.metaDescription }}" data-video="{{ course.video }}"
+                                           data-metaurl="{{ course.metaUrl }}"
                                            data-url="{{ path('edit_course', {course: course.id}) }}">modifier</a>
                                         <a class="dropdown-item deleteElt" href="#" data-url="{{ path('delete_course', {course: course.id}) }}">supprimer</a>
                                         <a class="dropdown-item" href="{{ path('users_courses', {course: course.id}) }}">Participants</a>
@@ -89,6 +90,7 @@
                         </div>
                         <div class="form-group">
                             <input type="text" name="duration" required class="form-control" id="duration" placeholder="Durée de la formation (en heure)">
+                            <input type="hidden" name="metaUrl" required class="form-control" id="metaUrl">
                         </div>
                         <div class="document-editor">
                             <div id="toolbar-container"></div>

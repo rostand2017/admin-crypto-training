@@ -23,10 +23,15 @@ $(document).ready(function() {
         else
             videoPreview.html('');
     }
+
+    function formatUrl(url){
+        return url.replaceAll(/[|&_ ]+/g, "-").replaceAll("é", "e").replaceAll("à", "a").toLowerCase();
+    }
     editCkeditor();
 
     $('#form').on('submit', function (e) {
         e.preventDefault();
+        $('#metaUrl').val(formatUrl($("#title").val()));
         var formdata = (window.FormData) ? new FormData($(this)[0]) : null;
         var data = (formdata !== null) ? formdata : $(this).serialize();
         $.ajax({
@@ -80,6 +85,7 @@ $(document).ready(function() {
         $('#price').val($(this).data('price'));
         $('#oldPrice').val($(this).data('oldprice'));
         $('#duration').val($(this).data('duration'));
+        $('#metaUrl').val($(this).data('metaurl'));
         $('#video').val($(this).data('video'));
         $('#metaDescription').val($(this).data('metadescription'));
         previewVideoIframe($('#video'), $('#videoPreview'));

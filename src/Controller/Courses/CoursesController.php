@@ -174,8 +174,7 @@ class CoursesController extends  AbstractController
         $metaDescription = $post->get("metaDescription");
         $metaUrl = $post->get("metaUrl");
 
-        $metaUrl = $this->titleToUrl($metaUrl);
-
+        $metaUrl = $this->titleToUrl($metaUrl??$title);
         if($title == "")
             return new JsonResponse(array("status"=>1, "mes"=>"Renseignez le titre de la formation"));
         if( $overview == "")
@@ -223,7 +222,7 @@ class CoursesController extends  AbstractController
         $replaces = ['&', '_', ' ', "\\", "/"];
         $title = str_replace($replaces,"-", $title);
         $replaces = [":", "?", "#", "[", "]", "@", "!", "$", "&", "'", "(", ")", "*", "+", ",", ";", "=", '"'];
-        return str_replace($replaces,"-", $title);
+        return strtolower(str_replace($replaces,"-", $title));
     }
 
     /**
