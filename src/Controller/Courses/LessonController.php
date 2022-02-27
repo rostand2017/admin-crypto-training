@@ -48,8 +48,6 @@ class LessonController extends AbstractController
      * @Route("modules/{module}/lessons/new", name="new_lesson", requirements={"module"="\d+"})
      */
     public function newLessonAction(Request $request, Module $module){
-		var_dump("fichier ");
-		die();
         $em = $this->getDoctrine()->getManager();
         $lesson = new Lesson();
         $lesson = $this->validateLessonForm($request, $lesson);
