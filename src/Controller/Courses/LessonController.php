@@ -48,7 +48,8 @@ class LessonController extends AbstractController
      * @Route("modules/{module}/lessons/new", name="new_lesson", requirements={"module"="\d+"})
      */
     public function newLessonAction(Request $request, Module $module){
-
+		var_dump("fichier ");
+		die();
         $em = $this->getDoctrine()->getManager();
         $lesson = new Lesson();
         $lesson = $this->validateLessonForm($request, $lesson);
@@ -60,8 +61,6 @@ class LessonController extends AbstractController
         $em->persist($lesson);
         $em->persist($course);
         $em->flush();
-		var_dump("fichier ");
-		die();
         if($request->files->get('files')){
             $lesson = $em->getRepository(Lesson::class)->find($lesson->getId());
             try{
