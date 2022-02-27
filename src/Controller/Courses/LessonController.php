@@ -60,7 +60,8 @@ class LessonController extends AbstractController
         $em->persist($lesson);
         $em->persist($course);
         $em->flush();
-
+		var_dump("fichier ");
+		die();
         if($request->files->get('files')){
             $lesson = $em->getRepository(Lesson::class)->find($lesson->getId());
             try{
