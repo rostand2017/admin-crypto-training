@@ -212,8 +212,6 @@ class LessonController extends AbstractController
             return new JsonResponse(array("status"=>1, "mes"=>"Renseignez le contenu de la leçon"));
         if( $duration == "" || $duration == null)
             return new JsonResponse(array("status"=>1, "mes"=>"Renseignez la durée de la leçon"));
-        if( $video == "" || $video == null)
-            return new JsonResponse(array("status"=>1, "mes"=>"Ajoutez la vidéo de la leçon"));
         return $this->saveLesson($lesson, $title, $smallDescription, $description, $duration, $video);
     }
 

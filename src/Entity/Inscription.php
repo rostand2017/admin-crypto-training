@@ -29,6 +29,13 @@ class Inscription
     private $price;
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(name="transactionNumber", type="string", nullable=true)
+     */
+    private $transactionNumber;
+
+    /**
      * @var int|null
      *
      * @ORM\Column(name="progression", type="integer", nullable=true)
@@ -152,6 +159,22 @@ class Inscription
     public function setCreatedat(?\DateTime $createdat): void
     {
         $this->createdat = $createdat;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getTransactionNumber(): ?string
+    {
+        return $this->transactionNumber;
+    }
+
+    /**
+     * @param string|null $transactionNumber
+     */
+    public function setTransactionNumber(?string $transactionNumber): void
+    {
+        $this->transactionNumber = $transactionNumber;
     }
 
     /**

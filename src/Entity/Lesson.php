@@ -37,16 +37,16 @@ class Lesson
     private $lessonnumber;
 
     /**
-     * @var string|null
+     * @var resource|null
      *
-     * @ORM\Column(name="smallDescription", type="text", length=65535, nullable=true)
+     * @ORM\Column(name="smallDescription", type="blob", nullable=true)
      */
     private $smalldescription;
 
     /**
-     * @var string|null
+     * @var resource|null
      *
-     * @ORM\Column(name="description", type="text", length=65535, nullable=true)
+     * @ORM\Column(name="description", type="blob", nullable=true)
      */
     private $description;
 
@@ -138,7 +138,7 @@ class Lesson
      */
     public function getSmalldescription(): ?string
     {
-        return $this->smalldescription;
+        return fgets($this->smalldescription);
     }
 
     /**
@@ -154,7 +154,7 @@ class Lesson
      */
     public function getDescription(): ?string
     {
-        return $this->description;
+        return fgets($this->description);
     }
 
     /**

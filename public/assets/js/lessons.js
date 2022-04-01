@@ -34,15 +34,43 @@ $(document).ready(function() {
             .catch(function (reason) { console.error(reason); });
     }
 
+    var colors = ["#fff", "#000", "#f2a900"];
+    var toolbarOptions = [
+        [{ 'font': [] }, {size: [ 'small', false, 'large', 'huge' ]}],
+        ['bold', 'italic', 'underline', 'strike'],
+        [{ 'color': colors }, {'background': colors}],
+        [ { 'header': 1 }, { 'header': 2 }, {'header': 3}, 'blockquote'],
+        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+        [{ 'direction': 'rtl' }, 'align', { 'indent': '-1'}, { 'indent': '+1'}],
+        ["link", 'image', 'video']
+    ];
+
+    function createEditor(editorId, placeholder) {
+        return new Quill(editorId, {
+            placeholder: placeholder,
+            theme: 'snow',
+            modules: {
+                toolbar: toolbarOptions
+            }
+        });
+    }
+
+    var editor1 = createEditor("#editor1"),
+        editor2 = createEditor("#editor2");
+
+    editor1.on('editor-change', function(delta, oldDelta, source) {
+        $('#smallDescription').val(editor1.root.innerHTML);
+    });
+
+    editor2.on('editor-change', function(delta, oldDelta, source) {
+        $('#description').val(editor2.root.innerHTML);
+    });
     function previewVideoIframe(video, videoPreview){
         if(video.val().toLowerCase().split('iframe').length > 1)
             videoPreview.html(video.val());
         else
             videoPreview.html('');
     }
-
-    editCkeditor();
-    editCkeditor2();
 
     $('#form').on('submit', function (e) {
         e.preventDefault();
@@ -86,16 +114,16 @@ $(document).ready(function() {
 
     $('#newModal').on('click', function () {
         $('#form').get(0).reset();
-        editor.setData("");
-        editor2.setData("");
+        $("#editor1").html("");
+        $("#editor2").html("");
         $('#alert').get(0).innerHTML = "";
         $("#form").attr('action', $(this).data('url'));
         $('#filesContainer').show();
     });
 
     $('.editModal').on('click', function () {
-        editor.setData($(this).data("smalldescription"));
-        editor2.setData($(this).data("description"));
+        editor1.root.innerHTML = $(this).data("smalldescription");
+        editor2.root.innerHTML = $(this).data("description");
         $('#title').val($(this).data('title'));
         $('#video').val($(this).data('video'));
         $('#duration').val($(this).data('duration'));
