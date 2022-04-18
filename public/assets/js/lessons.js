@@ -114,8 +114,8 @@ $(document).ready(function() {
 
     $('#newModal').on('click', function () {
         $('#form').get(0).reset();
-        $("#editor1").html("");
-        $("#editor2").html("");
+        editor1.root.innerHTML = "";
+        editor2.root.innerHTML = "";
         $('#alert').get(0).innerHTML = "";
         $("#form").attr('action', $(this).data('url'));
         $('#filesContainer').show();
